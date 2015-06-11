@@ -32,7 +32,6 @@ static PyObject *Md_Join(PyObject * self, PyObject * args) {
 
     PyObject *response =  Py_BuildValue("i",api->Join());
 
-    /* todo fix Py_INCREF or direct return the object */
     return response;
 }
 
@@ -49,6 +48,15 @@ static PyObject *Md_RegisterFront(PyObject * self, PyObject * args) {
 }
 
 static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
+
+    PyObject *py_spi;
+    IF(!PyArg_ParseTuple(args,"O",&py_spi)){
+        return NULL;
+    }
+    CSecurityFtdcMdSpi *spi = new MdSpiWrapper(py_spi);
+    api ->RegisterSpi(spi);
+
+    Py_DECREF(py_spi);
     Py_INCREF(Py_None);
 
     return Py_None;
@@ -56,7 +64,23 @@ static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
 
 static PyObject *Md_SubscribeMarketData(PyObject * self, PyObject * args) {
 
-    PyArg_ParseTuple(args,"")
+    PyObject *instruments = PyTuple_GetItem(args,0);
+    PyObject *exchangeid = PyTuple_GetItem(args,1);
+    char *exchange = PyString_AsString(exchangeid);
+    int length = PySequence_Length(instruments);
+
+    char **inst_list = (char **)calloc(length,sizeof(char *));
+    for(int i=0;i<length;i++)
+    {
+        inst_list[i] = PyString_AsString(PySequence_GetItem(instruments,i));
+
+    }
+
+    api ->SubscribeMarketData(inst_list,length,exchange);
+    free(inst_list);
+    free(exchange);
+    Py_DECREF(instruments);
+    Py_DECREF(exchangeid);
 
     Py_INCREF(Py_None);
     return Py_None;
@@ -65,6 +89,27 @@ static PyObject *Md_SubscribeMarketData(PyObject * self, PyObject * args) {
 
 static PyObject *Md_UnSubscribeMarketData(PyObject * self, PyObject * args) {
 
+    PyObject *instruments = PyTuple_GetItem(args,0);
+    PyObject *exchangeid = PyTuple_GetItem(args,1);
+
+    char *exchange = PyString_AsString(exchangeid);
+
+    int length = PySequence_Length(instruments);
+
+    char **inst_list= (char **)calloc(length,sizeof(char *));
+
+    for(int i=0;i<length;i++)
+    {
+        inst_list[i] = PyString_AsString(PySequence_GetItem(instruments,i));
+    }
+
+    api->UnSubscribeMarketData(inst_list,length,exchange);
+
+    free(inst_list);
+    free(exchange);
+
+    Py_DECREF(instruments);
+    Py_DECREF(exchangeid);
     Py_INCREF(Py_None);
     return Py_None;
 
@@ -82,6 +127,7 @@ static PyObject *Md_ReqUserLogin(PyObject * self, PyObject * args) {
 
     CSecurityFtdcReqUserLoginField *login_field = from_CSecurityFtdcReqUserLoginField(py_login);
     PyObject *response = Py_BuildValue("i",api->ReqUserLogin(login_field,requestid))
+
     free(login_field);
     Py_DECREF(py_login);
     return response;
@@ -98,6 +144,7 @@ static PyObject *Md_ReqUserLogout(PyObject * self, PyObject * args) {
     CSecurityFtdcUserLogoutField *logout_field = from_CSecurityFtdcUserLogoutField(py_logout);
     PyObject *response = Py_BuildValue("i",api->ReqUserLogout(logout_field,logoutid));
 
+    free(logout_field);
     Py_DECREF(py_logout);
     return response;
 
