@@ -62,7 +62,7 @@ void  MdSpiWrapper::OnRspUserLogin(CSecurityFtdcRspUserLoginField *pRspUserLogin
 
   PyGILState_STATE gstate;
   gstate=PyGILState_Ensure();
-if(!PyObject_CallMethod(py_spi,(char*)"OnRspUserLogin",(char*)"NNib"),new_CSecurityFtdcRspUserLoginField(pRspUserLogin),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
+if(!PyObject_CallMethod(py_spi,(char*)"OnRspUserLogin",(char*)"NNib",new_CSecurityFtdcRspUserLoginField(pRspUserLogin),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
 {
 PyErr_Print();
 }

@@ -50,7 +50,7 @@ static PyObject *Md_RegisterFront(PyObject * self, PyObject * args) {
 static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
 
     PyObject *py_spi;
-    IF(!PyArg_ParseTuple(args,"O",&py_spi)){
+    if(!PyArg_ParseTuple(args,"O",&py_spi)){
         return NULL;
     }
     CSecurityFtdcMdSpi *spi = new MdSpiWrapper(py_spi);
@@ -126,7 +126,7 @@ static PyObject *Md_ReqUserLogin(PyObject * self, PyObject * args) {
     }
 
     CSecurityFtdcReqUserLoginField *login_field = from_CSecurityFtdcReqUserLoginField(py_login);
-    PyObject *response = Py_BuildValue("i",api->ReqUserLogin(login_field,requestid))
+    PyObject *response = Py_BuildValue("i",api->ReqUserLogin(login_field,requestid));
 
     free(login_field);
     Py_DECREF(py_login);
