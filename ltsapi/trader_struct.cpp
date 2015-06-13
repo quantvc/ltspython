@@ -1,22 +1,25 @@
-
 #include "trader_struct.h"
 
-static PyObject * mod=NULL;
-PyObject * register_struct(PyObject * self, PyObject * args){
-  mod = PyTuple_GetItem(args,0);
-  Py_INCREF(Py_None);
-  return Py_None;
+static PyObject *mod = NULL;
+
+PyObject *register_struct(PyObject * self, PyObject * args) {
+    mod = PyTuple_GetItem(args, 0);
+    Py_INCREF(Py_None);
+    return Py_None;
 }
 
 
 PyObject *new_CSecurityFtdcRspInfoField(CSecurityFtdcRspInfoField * p) {
+
     if (p == NULL) {
         Py_INCREF(Py_None);
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *)"CSecurityFtdcRspInfoField", (char *)"is",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcRspInfoField", "is",
                                p->ErrorID, p->ErrorMsg);
+
 }
 
 CSecurityFtdcRspInfoField *from_CSecurityFtdcRspInfoField(PyObject * p) {
@@ -34,7 +37,8 @@ PyObject *new_CSecurityFtdcExchangeField(CSecurityFtdcExchangeField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcExchangeField", (char *) "ssc",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcExchangeField", "ssc",
                                p->ExchangeID, p->ExchangeName, p->ExchangeProperty);
 }
 
@@ -54,7 +58,8 @@ PyObject *new_CSecurityFtdcProductField(CSecurityFtdcProductField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcProductField", (char *) "ssscidiiiicci",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcProductField", "ssscidiiiicci",
                                p->ProductID, p->ProductName, p->ExchangeID, p->ProductClass, p->VolumeMultiple,
                                p->PriceTick, p->MaxMarketOrderVolume, p->MinMarketOrderVolume, p->MaxLimitOrderVolume,
                                p->MinLimitOrderVolume, p->PositionType, p->PositionDateType, p->EFTMinTradeVolume);
@@ -86,7 +91,8 @@ PyObject *new_CSecurityFtdcInstrumentField(CSecurityFtdcInstrumentField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInstrumentField", (char *) "sssssciiiiiiidsssssciciiiscs",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcInstrumentField", "sssssciiiiiiidsssssciciiiscs",
                                p->InstrumentID, p->ExchangeID, p->InstrumentName, p->ExchangeInstID, p->ProductID,
                                p->ProductClass, p->DeliveryYear, p->DeliveryMonth, p->MaxMarketOrderVolume,
                                p->MinMarketOrderVolume, p->MaxLimitOrderVolume, p->MinLimitOrderVolume,
@@ -137,7 +143,8 @@ PyObject *new_CSecurityFtdcBrokerField(CSecurityFtdcBrokerField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBrokerField", (char *) "sssi",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcBrokerField", "sssi",
                                p->BrokerID, p->BrokerAbbr, p->BrokerName, p->IsActive);
 }
 
@@ -158,7 +165,7 @@ PyObject *new_CSecurityFtdcPartBrokerField(CSecurityFtdcPartBrokerField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcPartBrokerField", (char *) "sssi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcPartBrokerField", "sssi",
                                p->BrokerID, p->ExchangeID, p->ParticipantID, p->IsActive);
 }
 
@@ -179,7 +186,7 @@ PyObject *new_CSecurityFtdcInvestorField(CSecurityFtdcInvestorField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInvestorField", (char *) "sssscsiss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInvestorField", "sssscsiss",
                                p->InvestorID, p->BrokerID, p->InvestorGroupID, p->InvestorName, p->IdentifiedCardType,
                                p->IdentifiedCardNo, p->IsActive, p->SHBranchID, p->SZBranchID);
 }
@@ -206,7 +213,7 @@ PyObject *new_CSecurityFtdcTradingCodeField(CSecurityFtdcTradingCodeField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTradingCodeField", (char *) "ssssissc",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTradingCodeField", "ssssissc",
                                p->InvestorID, p->BrokerID, p->ExchangeID, p->ClientID, p->IsActive, p->AccountID,
                                p->PBU, p->ClientType);
 }
@@ -233,7 +240,7 @@ PyObject *new_CSecurityFtdcSuperUserField(CSecurityFtdcSuperUserField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcSuperUserField", (char *) "sssi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcSuperUserField", "sssi",
                                p->UserID, p->UserName, p->Password, p->IsActive);
 }
 
@@ -254,7 +261,7 @@ PyObject *new_CSecurityFtdcSuperUserFunctionField(CSecurityFtdcSuperUserFunction
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcSuperUserFunctionField", (char *) "sc",
+    return PyObject_CallMethod(mod, "CSecurityFtdcSuperUserFunctionField", "sc",
                                p->UserID, p->FunctionCode);
 }
 
@@ -274,7 +281,7 @@ PyObject *new_CSecurityFtdcBrokerUserField(CSecurityFtdcBrokerUserField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBrokerUserField", (char *) "ssscii",
+    return PyObject_CallMethod(mod, "CSecurityFtdcBrokerUserField", "ssscii",
                                p->BrokerID, p->UserID, p->UserName, p->UserType, p->IsActive, p->IsUsingOTP);
 }
 
@@ -297,7 +304,7 @@ PyObject *new_CSecurityFtdcBrokerUserFunctionField(CSecurityFtdcBrokerUserFuncti
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBrokerUserFunctionField", (char *) "ssc",
+    return PyObject_CallMethod(mod, "CSecurityFtdcBrokerUserFunctionField", "ssc",
                                p->BrokerID, p->UserID, p->BrokerFunctionCode);
 }
 
@@ -318,8 +325,8 @@ PyObject *new_CSecurityFtdcTradingAccountField(CSecurityFtdcTradingAccountField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTradingAccountField",
-                               (char *) "ssdddddddddddddddddddsddddddddddddddscdddddd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTradingAccountField",
+                               "ssdddddddddddddddddddsddddddddddddddscdddddd",
                                p->BrokerID, p->AccountID, p->PreMortgage, p->PreCredit, p->PreDeposit, p->PreBalance,
                                p->PreMargin, p->InterestBase, p->Interest, p->Deposit, p->Withdraw, p->FrozenMargin,
                                p->FrozenCash, p->FrozenCommission, p->CurrMargin, p->CashIn, p->Commission, p->Balance,
@@ -389,7 +396,7 @@ PyObject *new_CSecurityFtdcLoginForbiddenUserField(CSecurityFtdcLoginForbiddenUs
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcLoginForbiddenUserField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcLoginForbiddenUserField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -409,8 +416,8 @@ PyObject *new_CSecurityFtdcDepthMarketDataField(CSecurityFtdcDepthMarketDataFiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcDepthMarketDataField",
-                               (char *) "ssssdddddddiddddddddsididididididididididids",
+    return PyObject_CallMethod(mod, "CSecurityFtdcDepthMarketDataField",
+                               "ssssdddddddiddddddddsididididididididididids",
                                p->TradingDay, p->InstrumentID, p->ExchangeID, p->ExchangeInstID, p->LastPrice,
                                p->PreSettlementPrice, p->PreClosePrice, p->PreOpenInterest, p->OpenPrice,
                                p->HighestPrice, p->LowestPrice, p->Volume, p->Turnover, p->OpenInterest, p->ClosePrice,
@@ -480,7 +487,7 @@ PyObject *new_CSecurityFtdcInstrumentTradingRightField(CSecurityFtdcInstrumentTr
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInstrumentTradingRightField", (char *) "scssccsc",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInstrumentTradingRightField", "scssccsc",
                                p->InstrumentID, p->InvestorRange, p->BrokerID, p->InvestorID, p->Direction,
                                p->TradingRight, p->ExchangeID, p->InstrumentRange);
 }
@@ -507,8 +514,8 @@ PyObject *new_CSecurityFtdcInvestorPositionDetailField(CSecurityFtdcInvestorPosi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInvestorPositionDetailField",
-                               (char *) "sssccssidscsddddiddddsiiid",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInvestorPositionDetailField",
+                               "sssccssidscsddddiddddsiiid",
                                p->InstrumentID, p->BrokerID, p->InvestorID, p->HedgeFlag, p->Direction, p->OpenDate,
                                p->TradeID, p->Volume, p->OpenPrice, p->TradingDay, p->TradeType, p->ExchangeID,
                                p->Margin, p->ExchMargin, p->LastSettlementPrice, p->SettlementPrice, p->CloseVolume,
@@ -556,7 +563,7 @@ PyObject *new_CSecurityFtdcBondInterestField(CSecurityFtdcBondInterestField * p)
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBondInterestField", (char *) "sssd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcBondInterestField", "sssd",
                                p->TradingDay, p->ExchangeID, p->InstrumentID, p->Interest);
 }
 
@@ -578,7 +585,7 @@ PyObject *new_CSecurityFtdcMarketRationInfoField(CSecurityFtdcMarketRationInfoFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketRationInfoField", (char *) "sssi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketRationInfoField", "sssi",
                                p->BrokerID, p->InvestorID, p->ExchangeID, p->RationVolume);
 }
 
@@ -600,7 +607,7 @@ PyObject *new_CSecurityFtdcInstrumentCommissionRateField(CSecurityFtdcInstrument
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInstrumentCommissionRateField", (char *) "sscsscdddddddd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInstrumentCommissionRateField", "sscsscdddddddd",
                                p->ExchangeID, p->InstrumentID, p->InvestorRange, p->BrokerID, p->InvestorID,
                                p->Direction, p->StampTaxRateByMoney, p->StampTaxRateByVolume, p->TransferFeeRateByMoney,
                                p->TransferFeeRateByVolume, p->TradeFeeByMoney, p->TradeFeeByVolume, p->MarginByMoney,
@@ -635,7 +642,7 @@ PyObject *new_CSecurityFtdcExcessStockInfoField(CSecurityFtdcExcessStockInfoFiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcExcessStockInfoField", (char *) "ssssii",
+    return PyObject_CallMethod(mod, "CSecurityFtdcExcessStockInfoField", "ssssii",
                                p->BrokerID, p->InvestorID, p->ExchangeID, p->InstrumentID, p->ExcessVolume,
                                p->ExcessFrozenVolume);
 }
@@ -660,7 +667,7 @@ PyObject *new_CSecurityFtdcTraderOfferField(CSecurityFtdcTraderOfferField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTraderOfferField", (char *) "ssssiscssssssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTraderOfferField", "ssssiscssssssssss",
                                p->ExchangeID, p->BranchPBU, p->ParticipantID, p->Password, p->InstallID,
                                p->OrderLocalID, p->TraderConnectStatus, p->ConnectRequestDate, p->ConnectRequestTime,
                                p->LastReportDate, p->LastReportTime, p->ConnectDate, p->ConnectTime, p->StartDate,
@@ -698,7 +705,7 @@ PyObject *new_CSecurityFtdcMDTraderOfferField(CSecurityFtdcMDTraderOfferField * 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMDTraderOfferField", (char *) "ssssiscssssssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMDTraderOfferField", "ssssiscssssssssss",
                                p->ExchangeID, p->BranchPBU, p->ParticipantID, p->Password, p->InstallID,
                                p->OrderLocalID, p->TraderConnectStatus, p->ConnectRequestDate, p->ConnectRequestTime,
                                p->LastReportDate, p->LastReportTime, p->ConnectDate, p->ConnectTime, p->StartDate,
@@ -736,7 +743,7 @@ PyObject *new_CSecurityFtdcFrontStatusField(CSecurityFtdcFrontStatusField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcFrontStatusField", (char *) "issi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcFrontStatusField", "issi",
                                p->FrontID, p->LastReportDate, p->LastReportTime, p->IsActive);
 }
 
@@ -758,7 +765,7 @@ PyObject *new_CSecurityFtdcUserSessionField(CSecurityFtdcUserSessionField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcUserSessionField", (char *) "iisssssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcUserSessionField", "iisssssssss",
                                p->FrontID, p->SessionID, p->BrokerID, p->UserID, p->LoginDate, p->LoginTime,
                                p->IPAddress, p->UserProductInfo, p->InterfaceProductInfo, p->ProtocolInfo,
                                p->MacAddress);
@@ -789,8 +796,8 @@ PyObject *new_CSecurityFtdcOrderField(CSecurityFtdcOrderField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcOrderField",
-                               (char *) "ssssssccsssicscicdcisisssssicsissccciissssssssiiissisissdi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcOrderField",
+                               "ssssssccsssicscicdcisisssssicsissccciissssssssiiissisissdi",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->OrderRef, p->UserID, p->ExchangeID,
                                p->OrderPriceType, p->Direction, p->CombOffsetFlag, p->CombHedgeFlag, p->LimitPrice,
                                p->VolumeTotalOriginal, p->TimeCondition, p->GTDDate, p->VolumeCondition, p->MinVolume,
@@ -876,7 +883,7 @@ PyObject *new_CSecurityFtdcOrderActionField(CSecurityFtdcOrderActionField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcOrderActionField", (char *) "ssisiiiscdisssissssscssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcOrderActionField", "ssisiiiscdisssissssscssss",
                                p->BrokerID, p->InvestorID, p->OrderActionRef, p->OrderRef, p->RequestID, p->FrontID,
                                p->SessionID, p->ExchangeID, p->ActionFlag, p->LimitPrice, p->VolumeChange,
                                p->ActionDate, p->ActionTime, p->BranchPBU, p->InstallID, p->OrderLocalID,
@@ -923,7 +930,7 @@ PyObject *new_CSecurityFtdcErrOrderField(CSecurityFtdcErrOrderField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcErrOrderField", (char *) "ssssssccsssicscicdcisiiis",
+    return PyObject_CallMethod(mod, "CSecurityFtdcErrOrderField", "ssssssccsssicscicdcisiiis",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->OrderRef, p->UserID, p->ExchangeID,
                                p->OrderPriceType, p->Direction, p->CombOffsetFlag, p->CombHedgeFlag, p->LimitPrice,
                                p->VolumeTotalOriginal, p->TimeCondition, p->GTDDate, p->VolumeCondition, p->MinVolume,
@@ -969,7 +976,7 @@ PyObject *new_CSecurityFtdcErrOrderActionField(CSecurityFtdcErrOrderActionField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcErrOrderActionField", (char *) "ssisiiiscdisssissssscssssis",
+    return PyObject_CallMethod(mod, "CSecurityFtdcErrOrderActionField", "ssisiiiscdisssissssscssssis",
                                p->BrokerID, p->InvestorID, p->OrderActionRef, p->OrderRef, p->RequestID, p->FrontID,
                                p->SessionID, p->ExchangeID, p->ActionFlag, p->LimitPrice, p->VolumeChange,
                                p->ActionDate, p->ActionTime, p->BranchPBU, p->InstallID, p->OrderLocalID,
@@ -1018,7 +1025,7 @@ PyObject *new_CSecurityFtdcTradeField(CSecurityFtdcTradeField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTradeField", (char *) "ssssssscssscsccsissccssssicsi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTradeField", "ssssssscssscsccsissccssssicsi",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->OrderRef, p->UserID, p->ExchangeID,
                                p->TradeID, p->Direction, p->OrderSysID, p->ParticipantID, p->ClientID, p->TradingRole,
                                p->ExchangeInstID, p->OffsetFlag, p->HedgeFlag, p->Price, p->Volume, p->TradeDate,
@@ -1069,8 +1076,8 @@ PyObject *new_CSecurityFtdcInvestorPositionField(CSecurityFtdcInvestorPositionFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInvestorPositionField",
-                               (char *) "sssccciiiiddiiddddddddsddiddidddssiiiididdididddiid",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInvestorPositionField",
+                               "sssccciiiiddiiddddddddsddiddidddssiiiididdididddiid",
                                p->InstrumentID, p->BrokerID, p->InvestorID, p->PosiDirection, p->HedgeFlag,
                                p->PositionDate, p->YdPosition, p->Position, p->LongFrozen, p->ShortFrozen,
                                p->LongFrozenAmount, p->ShortFrozenAmount, p->OpenVolume, p->CloseVolume, p->OpenAmount,
@@ -1150,7 +1157,7 @@ PyObject *new_CSecurityFtdcSyncDepositField(CSecurityFtdcSyncDepositField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcSyncDepositField", (char *) "sssdis",
+    return PyObject_CallMethod(mod, "CSecurityFtdcSyncDepositField", "sssdis",
                                p->DepositSeqNo, p->BrokerID, p->InvestorID, p->Deposit, p->IsForce, p->AccountID);
 }
 
@@ -1174,7 +1181,7 @@ PyObject *new_CSecurityFtdcQryExchangeField(CSecurityFtdcQryExchangeField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryExchangeField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryExchangeField", "s",
                                p->ExchangeID);
 }
 
@@ -1193,7 +1200,7 @@ PyObject *new_CSecurityFtdcQryProductField(CSecurityFtdcQryProductField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryProductField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryProductField", "s",
                                p->ProductID);
 }
 
@@ -1211,7 +1218,7 @@ PyObject *new_CSecurityFtdcQryInstrumentField(CSecurityFtdcQryInstrumentField * 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInstrumentField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInstrumentField", "ssss",
                                p->InstrumentID, p->ExchangeID, p->ExchangeInstID, p->ProductID);
 }
 
@@ -1233,7 +1240,7 @@ PyObject *new_CSecurityFtdcQryBrokerField(CSecurityFtdcQryBrokerField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryBrokerField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryBrokerField", "s",
                                p->BrokerID);
 }
 
@@ -1251,7 +1258,7 @@ PyObject *new_CSecurityFtdcQryPartBrokerField(CSecurityFtdcQryPartBrokerField * 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryPartBrokerField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryPartBrokerField", "sss",
                                p->ExchangeID, p->BrokerID, p->ParticipantID);
 }
 
@@ -1272,7 +1279,7 @@ PyObject *new_CSecurityFtdcQryInvestorField(CSecurityFtdcQryInvestorField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInvestorField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInvestorField", "ss",
                                p->BrokerID, p->InvestorID);
 }
 
@@ -1292,7 +1299,7 @@ PyObject *new_CSecurityFtdcQryTradingCodeField(CSecurityFtdcQryTradingCodeField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryTradingCodeField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryTradingCodeField", "ssss",
                                p->BrokerID, p->InvestorID, p->ExchangeID, p->ClientID);
 }
 
@@ -1314,7 +1321,7 @@ PyObject *new_CSecurityFtdcQrySuperUserField(CSecurityFtdcQrySuperUserField * p)
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQrySuperUserField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQrySuperUserField", "s",
                                p->UserID);
 }
 
@@ -1333,7 +1340,7 @@ PyObject *new_CSecurityFtdcQrySuperUserFunctionField(CSecurityFtdcQrySuperUserFu
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQrySuperUserFunctionField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQrySuperUserFunctionField", "s",
                                p->UserID);
 }
 
@@ -1352,7 +1359,7 @@ PyObject *new_CSecurityFtdcQryBrokerUserField(CSecurityFtdcQryBrokerUserField * 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryBrokerUserField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryBrokerUserField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -1372,7 +1379,7 @@ PyObject *new_CSecurityFtdcQryBrokerUserFunctionField(CSecurityFtdcQryBrokerUser
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryBrokerUserFunctionField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryBrokerUserFunctionField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -1392,7 +1399,7 @@ PyObject *new_CSecurityFtdcQryTradingAccountField(CSecurityFtdcQryTradingAccount
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryTradingAccountField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryTradingAccountField", "ss",
                                p->BrokerID, p->InvestorID);
 }
 
@@ -1412,7 +1419,7 @@ PyObject *new_CSecurityFtdcQryLoginForbiddenUserField(CSecurityFtdcQryLoginForbi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryLoginForbiddenUserField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryLoginForbiddenUserField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -1432,7 +1439,7 @@ PyObject *new_CSecurityFtdcQryDepthMarketDataField(CSecurityFtdcQryDepthMarketDa
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryDepthMarketDataField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryDepthMarketDataField", "s",
                                p->InstrumentID);
 }
 
@@ -1451,7 +1458,7 @@ PyObject *new_CSecurityFtdcQryInstrumentTradingRightField(CSecurityFtdcQryInstru
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInstrumentTradingRightField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInstrumentTradingRightField", "ssss",
                                p->ExchangeID, p->BrokerID, p->InvestorID, p->InstrumentID);
 }
 
@@ -1473,7 +1480,7 @@ PyObject *new_CSecurityFtdcQryInvestorPositionDetailField(CSecurityFtdcQryInvest
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInvestorPositionDetailField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInvestorPositionDetailField", "sss",
                                p->BrokerID, p->InvestorID, p->InstrumentID);
 }
 
@@ -1494,7 +1501,7 @@ PyObject *new_CSecurityFtdcQryBondInterestField(CSecurityFtdcQryBondInterestFiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryBondInterestField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryBondInterestField", "ss",
                                p->ExchangeID, p->InstrumentID);
 }
 
@@ -1514,7 +1521,7 @@ PyObject *new_CSecurityFtdcQryMarketRationInfoField(CSecurityFtdcQryMarketRation
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryMarketRationInfoField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryMarketRationInfoField", "sss",
                                p->BrokerID, p->InvestorID, p->ExchangeID);
 }
 
@@ -1535,7 +1542,7 @@ PyObject *new_CSecurityFtdcQryInstrumentCommissionRateField(CSecurityFtdcQryInst
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInstrumentCommissionRateField", (char *) "ssssc",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInstrumentCommissionRateField", "ssssc",
                                p->ExchangeID, p->BrokerID, p->InvestorID, p->InstrumentID, p->Direction);
 }
 
@@ -1558,7 +1565,7 @@ PyObject *new_CSecurityFtdcQryExcessStockInfoField(CSecurityFtdcQryExcessStockIn
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryExcessStockInfoField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryExcessStockInfoField", "ssss",
                                p->BrokerID, p->InvestorID, p->ExchangeID, p->InstrumentID);
 }
 
@@ -1580,7 +1587,7 @@ PyObject *new_CSecurityFtdcQryTraderOfferField(CSecurityFtdcQryTraderOfferField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryTraderOfferField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryTraderOfferField", "sss",
                                p->ExchangeID, p->ParticipantID, p->BranchPBU);
 }
 
@@ -1601,7 +1608,7 @@ PyObject *new_CSecurityFtdcQryMDTraderOfferField(CSecurityFtdcQryMDTraderOfferFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryMDTraderOfferField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryMDTraderOfferField", "sss",
                                p->ExchangeID, p->ParticipantID, p->BranchPBU);
 }
 
@@ -1622,7 +1629,7 @@ PyObject *new_CSecurityFtdcQryFrontStatusField(CSecurityFtdcQryFrontStatusField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryFrontStatusField", (char *) "i",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryFrontStatusField", "i",
                                p->FrontID);
 }
 
@@ -1641,7 +1648,7 @@ PyObject *new_CSecurityFtdcQryUserSessionField(CSecurityFtdcQryUserSessionField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryUserSessionField", (char *) "iiss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryUserSessionField", "iiss",
                                p->FrontID, p->SessionID, p->BrokerID, p->UserID);
 }
 
@@ -1663,7 +1670,7 @@ PyObject *new_CSecurityFtdcQryOrderField(CSecurityFtdcQryOrderField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryOrderField", (char *) "sssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryOrderField", "sssssss",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->ExchangeID, p->OrderSysID,
                                p->InsertTimeStart, p->InsertTimeEnd);
 }
@@ -1688,7 +1695,7 @@ PyObject *new_CSecurityFtdcQryOrderActionField(CSecurityFtdcQryOrderActionField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryOrderActionField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryOrderActionField", "sss",
                                p->BrokerID, p->InvestorID, p->ExchangeID);
 }
 
@@ -1709,7 +1716,7 @@ PyObject *new_CSecurityFtdcQryErrOrderField(CSecurityFtdcQryErrOrderField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryErrOrderField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryErrOrderField", "ss",
                                p->BrokerID, p->InvestorID);
 }
 
@@ -1729,7 +1736,7 @@ PyObject *new_CSecurityFtdcQryErrOrderActionField(CSecurityFtdcQryErrOrderAction
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryErrOrderActionField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryErrOrderActionField", "ss",
                                p->BrokerID, p->InvestorID);
 }
 
@@ -1749,7 +1756,7 @@ PyObject *new_CSecurityFtdcQryTradeField(CSecurityFtdcQryTradeField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryTradeField", (char *) "sssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryTradeField", "sssssss",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->ExchangeID, p->TradeID,
                                p->TradeTimeStart, p->TradeTimeEnd);
 }
@@ -1774,7 +1781,7 @@ PyObject *new_CSecurityFtdcQryInvestorPositionField(CSecurityFtdcQryInvestorPosi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryInvestorPositionField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryInvestorPositionField", "sss",
                                p->BrokerID, p->InvestorID, p->InstrumentID);
 }
 
@@ -1795,7 +1802,7 @@ PyObject *new_CSecurityFtdcQrySyncDepositField(CSecurityFtdcQrySyncDepositField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQrySyncDepositField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcQrySyncDepositField", "ss",
                                p->BrokerID, p->DepositSeqNo);
 }
 
@@ -1815,7 +1822,7 @@ PyObject *new_CSecurityFtdcUserPasswordUpdateField(CSecurityFtdcUserPasswordUpda
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcUserPasswordUpdateField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcUserPasswordUpdateField", "ssss",
                                p->BrokerID, p->UserID, p->OldPassword, p->NewPassword);
 }
 
@@ -1837,7 +1844,7 @@ PyObject *new_CSecurityFtdcTradingAccountPasswordUpdateField(CSecurityFtdcTradin
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTradingAccountPasswordUpdateField", (char *) "ssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTradingAccountPasswordUpdateField", "ssss",
                                p->BrokerID, p->AccountID, p->OldPassword, p->NewPassword);
 }
 
@@ -1859,7 +1866,7 @@ PyObject *new_CSecurityFtdcManualSyncBrokerUserOTPField(CSecurityFtdcManualSyncB
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcManualSyncBrokerUserOTPField", (char *) "sscss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcManualSyncBrokerUserOTPField", "sscss",
                                p->BrokerID, p->UserID, p->OTPType, p->FirstOTP, p->SecondOTP);
 }
 
@@ -1882,7 +1889,7 @@ PyObject *new_CSecurityFtdcBrokerUserPasswordField(CSecurityFtdcBrokerUserPasswo
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBrokerUserPasswordField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcBrokerUserPasswordField", "sss",
                                p->BrokerID, p->UserID, p->Password);
 }
 
@@ -1903,7 +1910,7 @@ PyObject *new_CSecurityFtdcTradingAccountPasswordField(CSecurityFtdcTradingAccou
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcTradingAccountPasswordField", (char *) "sss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcTradingAccountPasswordField", "sss",
                                p->BrokerID, p->AccountID, p->Password);
 }
 
@@ -1924,7 +1931,7 @@ PyObject *new_CSecurityFtdcUserRightField(CSecurityFtdcUserRightField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcUserRightField", (char *) "ssci",
+    return PyObject_CallMethod(mod, "CSecurityFtdcUserRightField", "ssci",
                                p->BrokerID, p->UserID, p->UserRightType, p->IsForbidden);
 }
 
@@ -1945,7 +1952,7 @@ PyObject *new_CSecurityFtdcInvestorAccountField(CSecurityFtdcInvestorAccountFiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInvestorAccountField", (char *) "sssici",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInvestorAccountField", "sssici",
                                p->BrokerID, p->InvestorID, p->AccountID, p->IsDefault, p->AccountType, p->IsActive);
 }
 
@@ -1969,7 +1976,7 @@ PyObject *new_CSecurityFtdcUserIPField(CSecurityFtdcUserIPField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcUserIPField", (char *) "sssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcUserIPField", "sssss",
                                p->BrokerID, p->UserID, p->IPAddress, p->IPMask, p->MacAddress);
 }
 
@@ -1991,7 +1998,7 @@ PyObject *new_CSecurityFtdcBrokerUserOTPParamField(CSecurityFtdcBrokerUserOTPPar
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcBrokerUserOTPParamField", (char *) "sssssiic",
+    return PyObject_CallMethod(mod, "CSecurityFtdcBrokerUserOTPParamField", "sssssiic",
                                p->BrokerID, p->UserID, p->OTPVendorsID, p->SerialNumber, p->AuthKey, p->LastDrift,
                                p->LastSuccess, p->OTPType);
 }
@@ -2018,7 +2025,7 @@ PyObject *new_CSecurityFtdcReqUserLoginField(CSecurityFtdcReqUserLoginField * p)
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcReqUserLoginField", (char *) "sssssssssss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcReqUserLoginField", "sssssssssss",
                                p->TradingDay, p->BrokerID, p->UserID, p->Password, p->UserProductInfo,
                                p->InterfaceProductInfo, p->ProtocolInfo, p->MacAddress, p->OneTimePassword,
                                p->ClientIPAddress, p->AuthCode);
@@ -2049,7 +2056,7 @@ PyObject *new_CSecurityFtdcRspUserLoginField(CSecurityFtdcRspUserLoginField * p)
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcRspUserLoginField", (char *) "sssssiis",
+    return PyObject_CallMethod(mod, "CSecurityFtdcRspUserLoginField", "sssssiis",
                                p->TradingDay, p->LoginTime, p->BrokerID, p->UserID, p->SystemName, p->FrontID,
                                p->SessionID, p->MaxOrderRef);
 }
@@ -2076,7 +2083,7 @@ PyObject *new_CSecurityFtdcUserLogoutField(CSecurityFtdcUserLogoutField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcUserLogoutField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcUserLogoutField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -2095,7 +2102,7 @@ PyObject *new_CSecurityFtdcLogoutAllField(CSecurityFtdcLogoutAllField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcLogoutAllField", (char *) "iis",
+    return PyObject_CallMethod(mod, "CSecurityFtdcLogoutAllField", "iis",
                                p->FrontID, p->SessionID, p->SystemName);
 }
 
@@ -2115,7 +2122,7 @@ PyObject *new_CSecurityFtdcForceUserLogoutField(CSecurityFtdcForceUserLogoutFiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcForceUserLogoutField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcForceUserLogoutField", "ss",
                                p->BrokerID, p->UserID);
 }
 
@@ -2135,7 +2142,7 @@ PyObject *new_CSecurityFtdcInputOrderField(CSecurityFtdcInputOrderField * p) {
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInputOrderField", (char *) "ssssssccsssicscicdcisii",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInputOrderField", "ssssssccsssicscicdcisii",
                                p->BrokerID, p->InvestorID, p->InstrumentID, p->OrderRef, p->UserID, p->ExchangeID,
                                p->OrderPriceType, p->Direction, p->CombOffsetFlag, p->CombHedgeFlag, p->LimitPrice,
                                p->VolumeTotalOriginal, p->TimeCondition, p->GTDDate, p->VolumeCondition, p->MinVolume,
@@ -2179,7 +2186,7 @@ PyObject *new_CSecurityFtdcInputOrderActionField(CSecurityFtdcInputOrderActionFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInputOrderActionField", (char *) "ssisiiiscdissss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcInputOrderActionField", "ssisiiiscdissss",
                                p->BrokerID, p->InvestorID, p->OrderActionRef, p->OrderRef, p->RequestID, p->FrontID,
                                p->SessionID, p->ExchangeID, p->ActionFlag, p->LimitPrice, p->VolumeChange, p->UserID,
                                p->InstrumentID, p->BranchPBU, p->OrderLocalID);
@@ -2214,7 +2221,7 @@ PyObject *new_CSecurityFtdcSpecificInstrumentField(CSecurityFtdcSpecificInstrume
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcSpecificInstrumentField", (char *) "ss",
+    return PyObject_CallMethod(mod, "CSecurityFtdcSpecificInstrumentField", "ss",
                                p->InstrumentID, p->ExchangeID);
 }
 
@@ -2234,7 +2241,7 @@ PyObject *new_CSecurityFtdcSpecificExchangeField(CSecurityFtdcSpecificExchangeFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcSpecificExchangeField", (char *) "s",
+    return PyObject_CallMethod(mod, "CSecurityFtdcSpecificExchangeField", "s",
                                p->ExchangeID);
 }
 
@@ -2253,7 +2260,7 @@ PyObject *new_CSecurityFtdcMarketDataBaseField(CSecurityFtdcMarketDataBaseField 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataBaseField", (char *) "sdddd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataBaseField", "sdddd",
                                p->TradingDay, p->PreSettlementPrice, p->PreClosePrice, p->PreOpenInterest, p->PreDelta);
 }
 
@@ -2276,7 +2283,7 @@ PyObject *new_CSecurityFtdcMarketDataStaticField(CSecurityFtdcMarketDataStaticFi
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataStaticField", (char *) "dddddddd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataStaticField", "dddddddd",
                                p->OpenPrice, p->HighestPrice, p->LowestPrice, p->ClosePrice, p->UpperLimitPrice,
                                p->LowerLimitPrice, p->SettlementPrice, p->CurrDelta);
 }
@@ -2303,7 +2310,7 @@ PyObject *new_CSecurityFtdcMarketDataLastMatchField(CSecurityFtdcMarketDataLastM
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataLastMatchField", (char *) "didd",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataLastMatchField", "didd",
                                p->LastPrice, p->Volume, p->Turnover, p->OpenInterest);
 }
 
@@ -2325,7 +2332,7 @@ PyObject *new_CSecurityFtdcMarketDataBestPriceField(CSecurityFtdcMarketDataBestP
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataBestPriceField", (char *) "didi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataBestPriceField", "didi",
                                p->BidPrice1, p->BidVolume1, p->AskPrice1, p->AskVolume1);
 }
 
@@ -2347,7 +2354,7 @@ PyObject *new_CSecurityFtdcMarketDataBid23Field(CSecurityFtdcMarketDataBid23Fiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataBid23Field", (char *) "didi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataBid23Field", "didi",
                                p->BidPrice2, p->BidVolume2, p->BidPrice3, p->BidVolume3);
 }
 
@@ -2369,7 +2376,7 @@ PyObject *new_CSecurityFtdcMarketDataAsk23Field(CSecurityFtdcMarketDataAsk23Fiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataAsk23Field", (char *) "didi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataAsk23Field", "didi",
                                p->AskPrice2, p->AskVolume2, p->AskPrice3, p->AskVolume3);
 }
 
@@ -2391,7 +2398,7 @@ PyObject *new_CSecurityFtdcMarketDataBid45Field(CSecurityFtdcMarketDataBid45Fiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataBid45Field", (char *) "didi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataBid45Field", "didi",
                                p->BidPrice4, p->BidVolume4, p->BidPrice5, p->BidVolume5);
 }
 
@@ -2413,7 +2420,7 @@ PyObject *new_CSecurityFtdcMarketDataAsk45Field(CSecurityFtdcMarketDataAsk45Fiel
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataAsk45Field", (char *) "didi",
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataAsk45Field", "didi",
                                p->AskPrice4, p->AskVolume4, p->AskPrice5, p->AskVolume5);
 }
 
@@ -2435,7 +2442,8 @@ PyObject *new_CSecurityFtdcMarketDataUpdateTimeField(CSecurityFtdcMarketDataUpda
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataUpdateTimeField", (char *) "ssis",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataUpdateTimeField", "ssis",
                                p->InstrumentID, p->UpdateTime, p->UpdateMillisec, p->ActionDay);
 }
 
@@ -2457,7 +2465,8 @@ PyObject *new_CSecurityFtdcMarketDataAveragePriceField(CSecurityFtdcMarketDataAv
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataAveragePriceField", (char *) "d",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataAveragePriceField", "d",
                                p->AveragePrice);
 }
 
@@ -2476,7 +2485,8 @@ PyObject *new_CSecurityFtdcMarketDataExchangeField(CSecurityFtdcMarketDataExchan
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcMarketDataExchangeField", (char *) "s",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcMarketDataExchangeField", "s",
                                p->ExchangeID);
 }
 
@@ -2495,7 +2505,8 @@ PyObject *new_CSecurityFtdcDisseminationField(CSecurityFtdcDisseminationField * 
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcDisseminationField", (char *) "hi",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcDisseminationField", "hi",
                                p->SequenceSeries, p->SequenceNo);
 }
 
@@ -2515,7 +2526,8 @@ PyObject *new_CSecurityFtdcInputFundTransferField(CSecurityFtdcInputFundTransfer
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcInputFundTransferField", (char *) "sssssdsc",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcInputFundTransferField", "sssssdsc",
                                p->BrokerID, p->InvestorID, p->AccountID, p->Password, p->UserID, p->TradeAmount,
                                p->Digest, p->AccountType);
 }
@@ -2542,7 +2554,8 @@ PyObject *new_CSecurityFtdcFundTransferField(CSecurityFtdcFundTransferField * p)
         return Py_None;
 
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcFundTransferField", (char *) "sssssdsiiissscis",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcFundTransferField", "sssssdsiiissscis",
                                p->BrokerID, p->InvestorID, p->AccountID, p->Password, p->UserID, p->TradeAmount,
                                p->Digest, p->SessionID, p->LiberSerial, p->PlateSerial, p->TransferSerial,
                                p->TradingDay, p->TradeTime, p->FundDirection, p->ErrorID, p->ErrorMsg);
@@ -2577,7 +2590,8 @@ PyObject *new_CSecurityFtdcQryFundTransferSerialField(CSecurityFtdcQryFundTransf
         Py_INCREF(Py_None);
         return Py_None;
     }
-    return PyObject_CallMethod(mod, (char *) "CSecurityFtdcQryFundTransferSerialField", (char *) "ssc",
+
+    return PyObject_CallMethod(mod, "CSecurityFtdcQryFundTransferSerialField", "ssc",
                                p->BrokerID, p->AccountID, p->AccountType);
 }
 
