@@ -6,6 +6,14 @@
 
 
 class Base(object):
+    def to_dict(self):
+        """
+
+        :return:
+        """
+
+        return {key: value for key, value in self.__dict__.iteritems() if value}
+
     def __repr__(self):
         """
         :return:
@@ -14,22 +22,64 @@ class Base(object):
 
 
 class CSecurityFtdcRspInfoField(Base):
+    """
+
+    """
+
     def __init__(self, ErrorID, ErrorMsg):
+        """
+
+        :param ErrorID:
+        :param ErrorMsg:
+        :return:
+        """
         self.ErrorID = int(ErrorID)
         self.ErrorMsg = ErrorMsg
 
 
 class CSecurityFtdcExchangeField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, ExchangeName, ExchangeProperty):
+        """
+
+        :param ExchangeID:
+        :param ExchangeName:
+        :param ExchangeProperty:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.ExchangeName = ExchangeName
         self.ExchangeProperty = ExchangeProperty
 
 
 class CSecurityFtdcProductField(Base):
+    """
+
+    """
+
     def __init__(self, ProductID, ProductName, ExchangeID, ProductClass, VolumeMultiple, PriceTick,
                  MaxMarketOrderVolume, MinMarketOrderVolume, MaxLimitOrderVolume, MinLimitOrderVolume, PositionType,
                  PositionDateType, EFTMinTradeVolume):
+        """
+
+        :param ProductID:
+        :param ProductName:
+        :param ExchangeID:
+        :param ProductClass:
+        :param VolumeMultiple:
+        :param PriceTick:
+        :param MaxMarketOrderVolume:
+        :param MinMarketOrderVolume:
+        :param MaxLimitOrderVolume:
+        :param MinLimitOrderVolume:
+        :param PositionType:
+        :param PositionDateType:
+        :param EFTMinTradeVolume:
+        :return:
+        """
         self.ProductID = ProductID
         self.ProductName = ProductName
         self.ExchangeID = ExchangeID
@@ -46,11 +96,47 @@ class CSecurityFtdcProductField(Base):
 
 
 class CSecurityFtdcInstrumentField(Base):
+    """
+
+    """
+
     def __init__(self, InstrumentID, ExchangeID, InstrumentName, ExchangeInstID, ProductID, ProductClass, DeliveryYear,
                  DeliveryMonth, MaxMarketOrderVolume, MinMarketOrderVolume, MaxLimitOrderVolume, MinLimitOrderVolume,
                  VolumeMultiple, PriceTick, CreateDate, OpenDate, ExpireDate, StartDelivDate, EndDelivDate,
                  InstLifePhase, IsTrading, PositionType, OrderCanBeWithdraw, MinBuyVolume, MinSellVolume, RightModelID,
                  PosTradeType, MarketID):
+        """
+
+        :param InstrumentID:
+        :param ExchangeID:
+        :param InstrumentName:
+        :param ExchangeInstID:
+        :param ProductID:
+        :param ProductClass:
+        :param DeliveryYear:
+        :param DeliveryMonth:
+        :param MaxMarketOrderVolume:
+        :param MinMarketOrderVolume:
+        :param MaxLimitOrderVolume:
+        :param MinLimitOrderVolume:
+        :param VolumeMultiple:
+        :param PriceTick:
+        :param CreateDate:
+        :param OpenDate:
+        :param ExpireDate:
+        :param StartDelivDate:
+        :param EndDelivDate:
+        :param InstLifePhase:
+        :param IsTrading:
+        :param PositionType:
+        :param OrderCanBeWithdraw:
+        :param MinBuyVolume:
+        :param MinSellVolume:
+        :param RightModelID:
+        :param PosTradeType:
+        :param MarketID:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.ExchangeID = ExchangeID
         self.InstrumentName = InstrumentName
@@ -82,7 +168,19 @@ class CSecurityFtdcInstrumentField(Base):
 
 
 class CSecurityFtdcBrokerField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, BrokerAbbr, BrokerName, IsActive):
+        """
+
+        :param BrokerID:
+        :param BrokerAbbr:
+        :param BrokerName:
+        :param IsActive:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.BrokerAbbr = BrokerAbbr
         self.BrokerName = BrokerName
@@ -90,7 +188,19 @@ class CSecurityFtdcBrokerField(Base):
 
 
 class CSecurityFtdcPartBrokerField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, ExchangeID, ParticipantID, IsActive):
+        """
+
+        :param BrokerID:
+        :param ExchangeID:
+        :param ParticipantID:
+        :param IsActive:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.ExchangeID = ExchangeID
         self.ParticipantID = ParticipantID
@@ -98,8 +208,25 @@ class CSecurityFtdcPartBrokerField(Base):
 
 
 class CSecurityFtdcInvestorField(Base):
+    """
+
+    """
+
     def __init__(self, InvestorID, BrokerID, InvestorGroupID, InvestorName, IdentifiedCardType, IdentifiedCardNo,
                  IsActive, SHBranchID, SZBranchID):
+        """
+
+        :param InvestorID:
+        :param BrokerID:
+        :param InvestorGroupID:
+        :param InvestorName:
+        :param IdentifiedCardType:
+        :param IdentifiedCardNo:
+        :param IsActive:
+        :param SHBranchID:
+        :param SZBranchID:
+        :return:
+        """
         self.InvestorID = InvestorID
         self.BrokerID = BrokerID
         self.InvestorGroupID = InvestorGroupID
@@ -112,7 +239,23 @@ class CSecurityFtdcInvestorField(Base):
 
 
 class CSecurityFtdcTradingCodeField(Base):
+    """
+
+    """
+
     def __init__(self, InvestorID, BrokerID, ExchangeID, ClientID, IsActive, AccountID, PBU, ClientType):
+        """
+
+        :param InvestorID:
+        :param BrokerID:
+        :param ExchangeID:
+        :param ClientID:
+        :param IsActive:
+        :param AccountID:
+        :param PBU:
+        :param ClientType:
+        :return:
+        """
         self.InvestorID = InvestorID
         self.BrokerID = BrokerID
         self.ExchangeID = ExchangeID
@@ -124,7 +267,19 @@ class CSecurityFtdcTradingCodeField(Base):
 
 
 class CSecurityFtdcSuperUserField(Base):
+    """
+
+    """
+
     def __init__(self, UserID, UserName, Password, IsActive):
+        """
+
+        :param UserID:
+        :param UserName:
+        :param Password:
+        :param IsActive:
+        :return:
+        """
         self.UserID = UserID
         self.UserName = UserName
         self.Password = Password
@@ -132,13 +287,37 @@ class CSecurityFtdcSuperUserField(Base):
 
 
 class CSecurityFtdcSuperUserFunctionField(Base):
+    """
+
+    """
+
     def __init__(self, UserID, FunctionCode):
+        """
+
+        :param UserID:
+        :param FunctionCode:
+        :return:
+        """
         self.UserID = UserID
         self.FunctionCode = FunctionCode
 
 
 class CSecurityFtdcBrokerUserField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, UserName, UserType, IsActive, IsUsingOTP):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param UserName:
+        :param UserType:
+        :param IsActive:
+        :param IsUsingOTP:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.UserName = UserName
@@ -148,13 +327,28 @@ class CSecurityFtdcBrokerUserField(Base):
 
 
 class CSecurityFtdcBrokerUserFunctionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, BrokerFunctionCode):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param BrokerFunctionCode:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.BrokerFunctionCode = BrokerFunctionCode
 
 
 class CSecurityFtdcTradingAccountField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, AccountID, PreMortgage, PreCredit, PreDeposit, PreBalance, PreMargin, InterestBase,
                  Interest, Deposit, Withdraw, FrozenMargin, FrozenCash, FrozenCommission, CurrMargin, CashIn,
                  Commission, Balance, Available, WithdrawQuota, Reserve, TradingDay, Credit, Mortgage, ExchangeMargin,
@@ -162,6 +356,54 @@ class CSecurityFtdcTradingAccountField(Base):
                  ConversionAmount, CreditAmount, StockValue, BondRepurchaseAmount, ReverseRepurchaseAmount,
                  CurrencyCode, AccountType, MarginTradeAmount, ShortSellAmount, MarginTradeProfit, ShortSellProfit,
                  SSStockValue, CreditRatio):
+        """
+
+        :param BrokerID:
+        :param AccountID:
+        :param PreMortgage:
+        :param PreCredit:
+        :param PreDeposit:
+        :param PreBalance:
+        :param PreMargin:
+        :param InterestBase:
+        :param Interest:
+        :param Deposit:
+        :param Withdraw:
+        :param FrozenMargin:
+        :param FrozenCash:
+        :param FrozenCommission:
+        :param CurrMargin:
+        :param CashIn:
+        :param Commission:
+        :param Balance:
+        :param Available:
+        :param WithdrawQuota:
+        :param Reserve:
+        :param TradingDay:
+        :param Credit:
+        :param Mortgage:
+        :param ExchangeMargin:
+        :param DeliveryMargin:
+        :param ExchangeDeliveryMargin:
+        :param FrozenTransferFee:
+        :param FrozenStampTax:
+        :param TransferFee:
+        :param StampTax:
+        :param ConversionAmount:
+        :param CreditAmount:
+        :param StockValue:
+        :param BondRepurchaseAmount:
+        :param ReverseRepurchaseAmount:
+        :param CurrencyCode:
+        :param AccountType:
+        :param MarginTradeAmount:
+        :param ShortSellAmount:
+        :param MarginTradeProfit:
+        :param ShortSellProfit:
+        :param SSStockValue:
+        :param CreditRatio:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.AccountID = AccountID
         self.PreMortgage = float(PreMortgage)
@@ -209,18 +451,80 @@ class CSecurityFtdcTradingAccountField(Base):
 
 
 class CSecurityFtdcLoginForbiddenUserField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcDepthMarketDataField(Base):
+    """
+
+    """
+
     def __init__(self, TradingDay, InstrumentID, ExchangeID, ExchangeInstID, LastPrice, PreSettlementPrice,
                  PreClosePrice, PreOpenInterest, OpenPrice, HighestPrice, LowestPrice, Volume, Turnover, OpenInterest,
                  ClosePrice, SettlementPrice, UpperLimitPrice, LowerLimitPrice, PreDelta, CurrDelta, UpdateTime,
                  UpdateMillisec, BidPrice1, BidVolume1, AskPrice1, AskVolume1, BidPrice2, BidVolume2, AskPrice2,
                  AskVolume2, BidPrice3, BidVolume3, AskPrice3, AskVolume3, BidPrice4, BidVolume4, AskPrice4, AskVolume4,
                  BidPrice5, BidVolume5, AskPrice5, AskVolume5, AveragePrice, ActionDay):
+        """
+
+        :param TradingDay:
+        :param InstrumentID:
+        :param ExchangeID:
+        :param ExchangeInstID:
+        :param LastPrice:
+        :param PreSettlementPrice:
+        :param PreClosePrice:
+        :param PreOpenInterest:
+        :param OpenPrice:
+        :param HighestPrice:
+        :param LowestPrice:
+        :param Volume:
+        :param Turnover:
+        :param OpenInterest:
+        :param ClosePrice:
+        :param SettlementPrice:
+        :param UpperLimitPrice:
+        :param LowerLimitPrice:
+        :param PreDelta:
+        :param CurrDelta:
+        :param UpdateTime:
+        :param UpdateMillisec:
+        :param BidPrice1:
+        :param BidVolume1:
+        :param AskPrice1:
+        :param AskVolume1:
+        :param BidPrice2:
+        :param BidVolume2:
+        :param AskPrice2:
+        :param AskVolume2:
+        :param BidPrice3:
+        :param BidVolume3:
+        :param AskPrice3:
+        :param AskVolume3:
+        :param BidPrice4:
+        :param BidVolume4:
+        :param AskPrice4:
+        :param AskVolume4:
+        :param BidPrice5:
+        :param BidVolume5:
+        :param AskPrice5:
+        :param AskVolume5:
+        :param AveragePrice:
+        :param ActionDay:
+        :return:
+        """
         self.TradingDay = TradingDay
         self.InstrumentID = InstrumentID
         self.ExchangeID = ExchangeID
@@ -268,8 +572,24 @@ class CSecurityFtdcDepthMarketDataField(Base):
 
 
 class CSecurityFtdcInstrumentTradingRightField(Base):
+    """
+
+    """
+
     def __init__(self, InstrumentID, InvestorRange, BrokerID, InvestorID, Direction, TradingRight, ExchangeID,
                  InstrumentRange):
+        """
+
+        :param InstrumentID:
+        :param InvestorRange:
+        :param BrokerID:
+        :param InvestorID:
+        :param Direction:
+        :param TradingRight:
+        :param ExchangeID:
+        :param InstrumentRange:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.InvestorRange = InvestorRange
         self.BrokerID = BrokerID
@@ -281,10 +601,44 @@ class CSecurityFtdcInstrumentTradingRightField(Base):
 
 
 class CSecurityFtdcInvestorPositionDetailField(Base):
+    """
+
+    """
+
     def __init__(self, InstrumentID, BrokerID, InvestorID, HedgeFlag, Direction, OpenDate, TradeID, Volume, OpenPrice,
                  TradingDay, TradeType, ExchangeID, Margin, ExchMargin, LastSettlementPrice, SettlementPrice,
                  CloseVolume, CloseAmount, TransferFee, StampTax, Commission, AccountID, PledgeInPosition,
                  PledgeInFrozenPosition, RepurchasePosition, Amount):
+        """
+
+        :param InstrumentID:
+        :param BrokerID:
+        :param InvestorID:
+        :param HedgeFlag:
+        :param Direction:
+        :param OpenDate:
+        :param TradeID:
+        :param Volume:
+        :param OpenPrice:
+        :param TradingDay:
+        :param TradeType:
+        :param ExchangeID:
+        :param Margin:
+        :param ExchMargin:
+        :param LastSettlementPrice:
+        :param SettlementPrice:
+        :param CloseVolume:
+        :param CloseAmount:
+        :param TransferFee:
+        :param StampTax:
+        :param Commission:
+        :param AccountID:
+        :param PledgeInPosition:
+        :param PledgeInFrozenPosition:
+        :param RepurchasePosition:
+        :param Amount:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
@@ -314,7 +668,19 @@ class CSecurityFtdcInvestorPositionDetailField(Base):
 
 
 class CSecurityFtdcBondInterestField(Base):
+    """
+
+    """
+
     def __init__(self, TradingDay, ExchangeID, InstrumentID, Interest):
+        """
+
+        :param TradingDay:
+        :param ExchangeID:
+        :param InstrumentID:
+        :param Interest:
+        :return:
+        """
         self.TradingDay = TradingDay
         self.ExchangeID = ExchangeID
         self.InstrumentID = InstrumentID
@@ -322,7 +688,19 @@ class CSecurityFtdcBondInterestField(Base):
 
 
 class CSecurityFtdcMarketRationInfoField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, ExchangeID, RationVolume):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :param RationVolume:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
@@ -330,9 +708,31 @@ class CSecurityFtdcMarketRationInfoField(Base):
 
 
 class CSecurityFtdcInstrumentCommissionRateField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, InstrumentID, InvestorRange, BrokerID, InvestorID, Direction, StampTaxRateByMoney,
                  StampTaxRateByVolume, TransferFeeRateByMoney, TransferFeeRateByVolume, TradeFeeByMoney,
                  TradeFeeByVolume, MarginByMoney, MinTradeFee):
+        """
+
+        :param ExchangeID:
+        :param InstrumentID:
+        :param InvestorRange:
+        :param BrokerID:
+        :param InvestorID:
+        :param Direction:
+        :param StampTaxRateByMoney:
+        :param StampTaxRateByVolume:
+        :param TransferFeeRateByMoney:
+        :param TransferFeeRateByVolume:
+        :param TradeFeeByMoney:
+        :param TradeFeeByVolume:
+        :param MarginByMoney:
+        :param MinTradeFee:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.InstrumentID = InstrumentID
         self.InvestorRange = InvestorRange
@@ -351,6 +751,16 @@ class CSecurityFtdcInstrumentCommissionRateField(Base):
 
 class CSecurityFtdcExcessStockInfoField(Base):
     def __init__(self, BrokerID, InvestorID, ExchangeID, InstrumentID, ExcessVolume, ExcessFrozenVolume):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :param InstrumentID:
+        :param ExcessVolume:
+        :param ExcessFrozenVolume:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
@@ -363,6 +773,27 @@ class CSecurityFtdcTraderOfferField(Base):
     def __init__(self, ExchangeID, BranchPBU, ParticipantID, Password, InstallID, OrderLocalID, TraderConnectStatus,
                  ConnectRequestDate, ConnectRequestTime, LastReportDate, LastReportTime, ConnectDate, ConnectTime,
                  StartDate, StartTime, TradingDay, BrokerID):
+        """
+
+        :param ExchangeID:
+        :param BranchPBU:
+        :param ParticipantID:
+        :param Password:
+        :param InstallID:
+        :param OrderLocalID:
+        :param TraderConnectStatus:
+        :param ConnectRequestDate:
+        :param ConnectRequestTime:
+        :param LastReportDate:
+        :param LastReportTime:
+        :param ConnectDate:
+        :param ConnectTime:
+        :param StartDate:
+        :param StartTime:
+        :param TradingDay:
+        :param BrokerID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.BranchPBU = BranchPBU
         self.ParticipantID = ParticipantID
@@ -386,6 +817,27 @@ class CSecurityFtdcMDTraderOfferField(Base):
     def __init__(self, ExchangeID, BranchPBU, ParticipantID, Password, InstallID, OrderLocalID, TraderConnectStatus,
                  ConnectRequestDate, ConnectRequestTime, LastReportDate, LastReportTime, ConnectDate, ConnectTime,
                  StartDate, StartTime, TradingDay, BrokerID):
+        """
+
+        :param ExchangeID:
+        :param BranchPBU:
+        :param ParticipantID:
+        :param Password:
+        :param InstallID:
+        :param OrderLocalID:
+        :param TraderConnectStatus:
+        :param ConnectRequestDate:
+        :param ConnectRequestTime:
+        :param LastReportDate:
+        :param LastReportTime:
+        :param ConnectDate:
+        :param ConnectTime:
+        :param StartDate:
+        :param StartTime:
+        :param TradingDay:
+        :param BrokerID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.BranchPBU = BranchPBU
         self.ParticipantID = ParticipantID
@@ -407,6 +859,14 @@ class CSecurityFtdcMDTraderOfferField(Base):
 
 class CSecurityFtdcFrontStatusField(Base):
     def __init__(self, FrontID, LastReportDate, LastReportTime, IsActive):
+        """
+
+        :param FrontID:
+        :param LastReportDate:
+        :param LastReportTime:
+        :param IsActive:
+        :return:
+        """
         self.FrontID = int(FrontID)
         self.LastReportDate = LastReportDate
         self.LastReportTime = LastReportTime
@@ -416,6 +876,21 @@ class CSecurityFtdcFrontStatusField(Base):
 class CSecurityFtdcUserSessionField(Base):
     def __init__(self, FrontID, SessionID, BrokerID, UserID, LoginDate, LoginTime, IPAddress, UserProductInfo,
                  InterfaceProductInfo, ProtocolInfo, MacAddress):
+        """
+
+        :param FrontID:
+        :param SessionID:
+        :param BrokerID:
+        :param UserID:
+        :param LoginDate:
+        :param LoginTime:
+        :param IPAddress:
+        :param UserProductInfo:
+        :param InterfaceProductInfo:
+        :param ProtocolInfo:
+        :param MacAddress:
+        :return:
+        """
         self.FrontID = int(FrontID)
         self.SessionID = int(SessionID)
         self.BrokerID = BrokerID
@@ -438,6 +913,68 @@ class CSecurityFtdcOrderField(Base):
                  OrderType, VolumeTraded, VolumeTotal, InsertDate, InsertTime, ActiveTime, SuspendTime, UpdateTime,
                  CancelTime, ActiveTraderID, ClearingPartID, SequenceNo, FrontID, SessionID, UserProductInfo, StatusMsg,
                  UserForceClose, ActiveUserID, BrokerOrderSeq, RelativeOrderSysID, BranchID, TradeAmount, IsETF):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param OrderRef:
+        :param UserID:
+        :param ExchangeID:
+        :param OrderPriceType:
+        :param Direction:
+        :param CombOffsetFlag:
+        :param CombHedgeFlag:
+        :param LimitPrice:
+        :param VolumeTotalOriginal:
+        :param TimeCondition:
+        :param GTDDate:
+        :param VolumeCondition:
+        :param MinVolume:
+        :param ContingentCondition:
+        :param StopPrice:
+        :param ForceCloseReason:
+        :param IsAutoSuspend:
+        :param BusinessUnit:
+        :param RequestID:
+        :param OrderLocalID:
+        :param ParticipantID:
+        :param ClientID:
+        :param ExchangeInstID:
+        :param BranchPBU:
+        :param InstallID:
+        :param OrderSubmitStatus:
+        :param AccountID:
+        :param NotifySequence:
+        :param TradingDay:
+        :param OrderSysID:
+        :param OrderSource:
+        :param OrderStatus:
+        :param OrderType:
+        :param VolumeTraded:
+        :param VolumeTotal:
+        :param InsertDate:
+        :param InsertTime:
+        :param ActiveTime:
+        :param SuspendTime:
+        :param UpdateTime:
+        :param CancelTime:
+        :param ActiveTraderID:
+        :param ClearingPartID:
+        :param SequenceNo:
+        :param FrontID:
+        :param SessionID:
+        :param UserProductInfo:
+        :param StatusMsg:
+        :param UserForceClose:
+        :param ActiveUserID:
+        :param BrokerOrderSeq:
+        :param RelativeOrderSysID:
+        :param BranchID:
+        :param TradeAmount:
+        :param IsETF:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -503,6 +1040,35 @@ class CSecurityFtdcOrderActionField(Base):
                  ActionFlag, LimitPrice, VolumeChange, ActionDate, ActionTime, BranchPBU, InstallID, OrderLocalID,
                  ActionLocalID, ParticipantID, ClientID, BusinessUnit, OrderActionStatus, UserID, BranchID, StatusMsg,
                  InstrumentID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param OrderActionRef:
+        :param OrderRef:
+        :param RequestID:
+        :param FrontID:
+        :param SessionID:
+        :param ExchangeID:
+        :param ActionFlag:
+        :param LimitPrice:
+        :param VolumeChange:
+        :param ActionDate:
+        :param ActionTime:
+        :param BranchPBU:
+        :param InstallID:
+        :param OrderLocalID:
+        :param ActionLocalID:
+        :param ParticipantID:
+        :param ClientID:
+        :param BusinessUnit:
+        :param OrderActionStatus:
+        :param UserID:
+        :param BranchID:
+        :param StatusMsg:
+        :param InstrumentID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.OrderActionRef = int(OrderActionRef)
@@ -535,6 +1101,35 @@ class CSecurityFtdcErrOrderField(Base):
                  CombOffsetFlag, CombHedgeFlag, LimitPrice, VolumeTotalOriginal, TimeCondition, GTDDate,
                  VolumeCondition, MinVolume, ContingentCondition, StopPrice, ForceCloseReason, IsAutoSuspend,
                  BusinessUnit, RequestID, UserForceClose, ErrorID, ErrorMsg):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param OrderRef:
+        :param UserID:
+        :param ExchangeID:
+        :param OrderPriceType:
+        :param Direction:
+        :param CombOffsetFlag:
+        :param CombHedgeFlag:
+        :param LimitPrice:
+        :param VolumeTotalOriginal:
+        :param TimeCondition:
+        :param GTDDate:
+        :param VolumeCondition:
+        :param MinVolume:
+        :param ContingentCondition:
+        :param StopPrice:
+        :param ForceCloseReason:
+        :param IsAutoSuspend:
+        :param BusinessUnit:
+        :param RequestID:
+        :param UserForceClose:
+        :param ErrorID:
+        :param ErrorMsg:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -567,6 +1162,37 @@ class CSecurityFtdcErrOrderActionField(Base):
                  ActionFlag, LimitPrice, VolumeChange, ActionDate, ActionTime, BranchPBU, InstallID, OrderLocalID,
                  ActionLocalID, ParticipantID, ClientID, BusinessUnit, OrderActionStatus, UserID, BranchID, StatusMsg,
                  InstrumentID, ErrorID, ErrorMsg):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param OrderActionRef:
+        :param OrderRef:
+        :param RequestID:
+        :param FrontID:
+        :param SessionID:
+        :param ExchangeID:
+        :param ActionFlag:
+        :param LimitPrice:
+        :param VolumeChange:
+        :param ActionDate:
+        :param ActionTime:
+        :param BranchPBU:
+        :param InstallID:
+        :param OrderLocalID:
+        :param ActionLocalID:
+        :param ParticipantID:
+        :param ClientID:
+        :param BusinessUnit:
+        :param OrderActionStatus:
+        :param UserID:
+        :param BranchID:
+        :param StatusMsg:
+        :param InstrumentID:
+        :param ErrorID:
+        :param ErrorMsg:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.OrderActionRef = int(OrderActionRef)
@@ -601,6 +1227,39 @@ class CSecurityFtdcTradeField(Base):
                  ParticipantID, ClientID, TradingRole, ExchangeInstID, OffsetFlag, HedgeFlag, Price, Volume, TradeDate,
                  TradeTime, TradeType, PriceSource, BranchPBU, OrderLocalID, ClearingPartID, BusinessUnit, SequenceNo,
                  TradeSource, TradingDay, BrokerOrderSeq):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param OrderRef:
+        :param UserID:
+        :param ExchangeID:
+        :param TradeID:
+        :param Direction:
+        :param OrderSysID:
+        :param ParticipantID:
+        :param ClientID:
+        :param TradingRole:
+        :param ExchangeInstID:
+        :param OffsetFlag:
+        :param HedgeFlag:
+        :param Price:
+        :param Volume:
+        :param TradeDate:
+        :param TradeTime:
+        :param TradeType:
+        :param PriceSource:
+        :param BranchPBU:
+        :param OrderLocalID:
+        :param ClearingPartID:
+        :param BusinessUnit:
+        :param SequenceNo:
+        :param TradeSource:
+        :param TradingDay:
+        :param BrokerOrderSeq:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -642,6 +1301,61 @@ class CSecurityFtdcInvestorPositionField(Base):
                  MarginTradeFrozenAmount, MarginTradeConversionProfit, ShortSellVolume, ShortSellAmount,
                  ShortSellFrozenVolume, ShortSellFrozenAmount, ShortSellConversionProfit, SSStockValue, TodayMTPosition,
                  TodaySSPosition, YdOpenCost):
+        """
+
+        :param InstrumentID:
+        :param BrokerID:
+        :param InvestorID:
+        :param PosiDirection:
+        :param HedgeFlag:
+        :param PositionDate:
+        :param YdPosition:
+        :param Position:
+        :param LongFrozen:
+        :param ShortFrozen:
+        :param LongFrozenAmount:
+        :param ShortFrozenAmount:
+        :param OpenVolume:
+        :param CloseVolume:
+        :param OpenAmount:
+        :param CloseAmount:
+        :param PositionCost:
+        :param FrozenCash:
+        :param CashIn:
+        :param Commission:
+        :param PreSettlementPrice:
+        :param SettlementPrice:
+        :param TradingDay:
+        :param OpenCost:
+        :param ExchangeMargin:
+        :param TodayPosition:
+        :param TransferFee:
+        :param StampTax:
+        :param TodayPurRedVolume:
+        :param ConversionRate:
+        :param ConversionAmount:
+        :param StockValue:
+        :param ExchangeID:
+        :param AccountID:
+        :param PledgeInPosition:
+        :param RepurchasePosition:
+        :param PurRedShortFrozen:
+        :param MarginTradeVolume:
+        :param MarginTradeAmount:
+        :param MarginTradeFrozenVolume:
+        :param MarginTradeFrozenAmount:
+        :param MarginTradeConversionProfit:
+        :param ShortSellVolume:
+        :param ShortSellAmount:
+        :param ShortSellFrozenVolume:
+        :param ShortSellFrozenAmount:
+        :param ShortSellConversionProfit:
+        :param SSStockValue:
+        :param TodayMTPosition:
+        :param TodaySSPosition:
+        :param YdOpenCost:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
@@ -697,6 +1411,16 @@ class CSecurityFtdcInvestorPositionField(Base):
 
 class CSecurityFtdcSyncDepositField(Base):
     def __init__(self, DepositSeqNo, BrokerID, InvestorID, Deposit, IsForce, AccountID):
+        """
+
+        :param DepositSeqNo:
+        :param BrokerID:
+        :param InvestorID:
+        :param Deposit:
+        :param IsForce:
+        :param AccountID:
+        :return:
+        """
         self.DepositSeqNo = DepositSeqNo
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
@@ -707,16 +1431,34 @@ class CSecurityFtdcSyncDepositField(Base):
 
 class CSecurityFtdcQryExchangeField(Base):
     def __init__(self, ExchangeID):
+        """
+
+        :param ExchangeID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcQryProductField(Base):
     def __init__(self, ProductID):
+        """
+
+        :param ProductID:
+        :return:
+        """
         self.ProductID = ProductID
 
 
 class CSecurityFtdcQryInstrumentField(Base):
     def __init__(self, InstrumentID, ExchangeID, ExchangeInstID, ProductID):
+        """
+
+        :param InstrumentID:
+        :param ExchangeID:
+        :param ExchangeInstID:
+        :param ProductID:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.ExchangeID = ExchangeID
         self.ExchangeInstID = ExchangeInstID
@@ -725,11 +1467,23 @@ class CSecurityFtdcQryInstrumentField(Base):
 
 class CSecurityFtdcQryBrokerField(Base):
     def __init__(self, BrokerID):
+        """
+
+        :param BrokerID:
+        :return:
+        """
         self.BrokerID = BrokerID
 
 
 class CSecurityFtdcQryPartBrokerField(Base):
     def __init__(self, ExchangeID, BrokerID, ParticipantID):
+        """
+
+        :param ExchangeID:
+        :param BrokerID:
+        :param ParticipantID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.BrokerID = BrokerID
         self.ParticipantID = ParticipantID
@@ -737,12 +1491,26 @@ class CSecurityFtdcQryPartBrokerField(Base):
 
 class CSecurityFtdcQryInvestorField(Base):
     def __init__(self, BrokerID, InvestorID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
 
 
 class CSecurityFtdcQryTradingCodeField(Base):
     def __init__(self, BrokerID, InvestorID, ExchangeID, ClientID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :param ClientID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
@@ -751,45 +1519,112 @@ class CSecurityFtdcQryTradingCodeField(Base):
 
 class CSecurityFtdcQrySuperUserField(Base):
     def __init__(self, UserID):
+        """
+
+        :param UserID:
+        :return:
+        """
         self.UserID = UserID
 
 
 class CSecurityFtdcQrySuperUserFunctionField(Base):
     def __init__(self, UserID):
+        """
+
+        :param UserID:
+        :return:
+        """
         self.UserID = UserID
 
 
 class CSecurityFtdcQryBrokerUserField(Base):
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcQryBrokerUserFunctionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcQryTradingAccountField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
 
 
 class CSecurityFtdcQryLoginForbiddenUserField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcQryDepthMarketDataField(Base):
+    """
+
+    """
+
     def __init__(self, InstrumentID):
+        """
+
+        :param InstrumentID:
+        :return:
+        """
         self.InstrumentID = InstrumentID
 
 
 class CSecurityFtdcQryInstrumentTradingRightField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, BrokerID, InvestorID, InstrumentID):
+        """
+
+        :param ExchangeID:
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
@@ -797,27 +1632,72 @@ class CSecurityFtdcQryInstrumentTradingRightField(Base):
 
 
 class CSecurityFtdcQryInvestorPositionDetailField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, InstrumentID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
 
 
 class CSecurityFtdcQryBondInterestField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, InstrumentID):
+        """
+
+        :param ExchangeID:
+        :param InstrumentID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.InstrumentID = InstrumentID
 
 
 class CSecurityFtdcQryMarketRationInfoField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, ExchangeID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcQryInstrumentCommissionRateField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, BrokerID, InvestorID, InstrumentID, Direction):
+        """
+
+        :param ExchangeID:
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param Direction:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
@@ -826,7 +1706,19 @@ class CSecurityFtdcQryInstrumentCommissionRateField(Base):
 
 
 class CSecurityFtdcQryExcessStockInfoField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, ExchangeID, InstrumentID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :param InstrumentID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
@@ -834,26 +1726,69 @@ class CSecurityFtdcQryExcessStockInfoField(Base):
 
 
 class CSecurityFtdcQryTraderOfferField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, ParticipantID, BranchPBU):
+        """
+
+        :param ExchangeID:
+        :param ParticipantID:
+        :param BranchPBU:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.ParticipantID = ParticipantID
         self.BranchPBU = BranchPBU
 
 
 class CSecurityFtdcQryMDTraderOfferField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID, ParticipantID, BranchPBU):
+        """
+
+        :param ExchangeID:
+        :param ParticipantID:
+        :param BranchPBU:
+        :return:
+        """
         self.ExchangeID = ExchangeID
         self.ParticipantID = ParticipantID
         self.BranchPBU = BranchPBU
 
 
 class CSecurityFtdcQryFrontStatusField(Base):
+    """
+
+    """
+
     def __init__(self, FrontID):
+        """
+
+        :param FrontID:
+        :return:
+        """
         self.FrontID = int(FrontID)
 
 
 class CSecurityFtdcQryUserSessionField(Base):
+    """
+
+    """
+
     def __init__(self, FrontID, SessionID, BrokerID, UserID):
+        """
+
+        :param FrontID:
+        :param SessionID:
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.FrontID = int(FrontID)
         self.SessionID = int(SessionID)
         self.BrokerID = BrokerID
@@ -861,7 +1796,22 @@ class CSecurityFtdcQryUserSessionField(Base):
 
 
 class CSecurityFtdcQryOrderField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, InstrumentID, ExchangeID, OrderSysID, InsertTimeStart, InsertTimeEnd):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param ExchangeID:
+        :param OrderSysID:
+        :param InsertTimeStart:
+        :param InsertTimeEnd:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -872,26 +1822,72 @@ class CSecurityFtdcQryOrderField(Base):
 
 
 class CSecurityFtdcQryOrderActionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, ExchangeID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param ExchangeID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcQryErrOrderField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
 
 
 class CSecurityFtdcQryErrOrderActionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
 
 
 class CSecurityFtdcQryTradeField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, InstrumentID, ExchangeID, TradeID, TradeTimeStart, TradeTimeEnd):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param ExchangeID:
+        :param TradeID:
+        :param TradeTimeStart:
+        :param TradeTimeEnd:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -902,20 +1898,53 @@ class CSecurityFtdcQryTradeField(Base):
 
 
 class CSecurityFtdcQryInvestorPositionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, InstrumentID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
 
 
 class CSecurityFtdcQrySyncDepositField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, DepositSeqNo):
+        """
+
+        :param BrokerID:
+        :param DepositSeqNo:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.DepositSeqNo = DepositSeqNo
 
 
 class CSecurityFtdcUserPasswordUpdateField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, OldPassword, NewPassword):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param OldPassword:
+        :param NewPassword:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.OldPassword = OldPassword
@@ -923,7 +1952,19 @@ class CSecurityFtdcUserPasswordUpdateField(Base):
 
 
 class CSecurityFtdcTradingAccountPasswordUpdateField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, AccountID, OldPassword, NewPassword):
+        """
+
+        :param BrokerID:
+        :param AccountID:
+        :param OldPassword:
+        :param NewPassword:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.AccountID = AccountID
         self.OldPassword = OldPassword
@@ -931,7 +1972,20 @@ class CSecurityFtdcTradingAccountPasswordUpdateField(Base):
 
 
 class CSecurityFtdcManualSyncBrokerUserOTPField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, OTPType, FirstOTP, SecondOTP):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param OTPType:
+        :param FirstOTP:
+        :param SecondOTP:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.OTPType = OTPType
@@ -940,21 +1994,55 @@ class CSecurityFtdcManualSyncBrokerUserOTPField(Base):
 
 
 class CSecurityFtdcBrokerUserPasswordField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, Password):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param Password:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.Password = Password
 
 
 class CSecurityFtdcTradingAccountPasswordField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, AccountID, Password):
+        """
+
+        :param BrokerID:
+        :param AccountID:
+        :param Password:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.AccountID = AccountID
         self.Password = Password
 
 
 class CSecurityFtdcUserRightField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, UserRightType, IsForbidden):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param UserRightType:
+        :param IsForbidden:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.UserRightType = UserRightType
@@ -962,7 +2050,21 @@ class CSecurityFtdcUserRightField(Base):
 
 
 class CSecurityFtdcInvestorAccountField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, AccountID, IsDefault, AccountType, IsActive):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param AccountID:
+        :param IsDefault:
+        :param AccountType:
+        :param IsActive:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.AccountID = AccountID
@@ -972,7 +2074,20 @@ class CSecurityFtdcInvestorAccountField(Base):
 
 
 class CSecurityFtdcUserIPField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, IPAddress, IPMask, MacAddress):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param IPAddress:
+        :param IPMask:
+        :param MacAddress:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.IPAddress = IPAddress
@@ -981,7 +2096,23 @@ class CSecurityFtdcUserIPField(Base):
 
 
 class CSecurityFtdcBrokerUserOTPParamField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID, OTPVendorsID, SerialNumber, AuthKey, LastDrift, LastSuccess, OTPType):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :param OTPVendorsID:
+        :param SerialNumber:
+        :param AuthKey:
+        :param LastDrift:
+        :param LastSuccess:
+        :param OTPType:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
         self.OTPVendorsID = OTPVendorsID
@@ -993,8 +2124,27 @@ class CSecurityFtdcBrokerUserOTPParamField(Base):
 
 
 class CSecurityFtdcReqUserLoginField(Base):
+    """
+
+    """
+
     def __init__(self, TradingDay, BrokerID, UserID, Password, UserProductInfo, InterfaceProductInfo, ProtocolInfo,
                  MacAddress, OneTimePassword, ClientIPAddress, AuthCode):
+        """
+
+        :param TradingDay:
+        :param BrokerID:
+        :param UserID:
+        :param Password:
+        :param UserProductInfo:
+        :param InterfaceProductInfo:
+        :param ProtocolInfo:
+        :param MacAddress:
+        :param OneTimePassword:
+        :param ClientIPAddress:
+        :param AuthCode:
+        :return:
+        """
         self.TradingDay = TradingDay
         self.BrokerID = BrokerID
         self.UserID = UserID
@@ -1009,7 +2159,23 @@ class CSecurityFtdcReqUserLoginField(Base):
 
 
 class CSecurityFtdcRspUserLoginField(Base):
+    """
+
+    """
+
     def __init__(self, TradingDay, LoginTime, BrokerID, UserID, SystemName, FrontID, SessionID, MaxOrderRef):
+        """
+
+        :param TradingDay:
+        :param LoginTime:
+        :param BrokerID:
+        :param UserID:
+        :param SystemName:
+        :param FrontID:
+        :param SessionID:
+        :param MaxOrderRef:
+        :return:
+        """
         self.TradingDay = TradingDay
         self.LoginTime = LoginTime
         self.BrokerID = BrokerID
@@ -1021,29 +2187,91 @@ class CSecurityFtdcRspUserLoginField(Base):
 
 
 class CSecurityFtdcUserLogoutField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcLogoutAllField(Base):
+    """
+
+    """
+
     def __init__(self, FrontID, SessionID, SystemName):
+        """
+
+        :param FrontID:
+        :param SessionID:
+        :param SystemName:
+        :return:
+        """
         self.FrontID = int(FrontID)
         self.SessionID = int(SessionID)
         self.SystemName = SystemName
 
 
 class CSecurityFtdcForceUserLogoutField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, UserID):
+        """
+
+        :param BrokerID:
+        :param UserID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.UserID = UserID
 
 
 class CSecurityFtdcInputOrderField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, InstrumentID, OrderRef, UserID, ExchangeID, OrderPriceType, Direction,
                  CombOffsetFlag, CombHedgeFlag, LimitPrice, VolumeTotalOriginal, TimeCondition, GTDDate,
                  VolumeCondition, MinVolume, ContingentCondition, StopPrice, ForceCloseReason, IsAutoSuspend,
                  BusinessUnit, RequestID, UserForceClose):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param InstrumentID:
+        :param OrderRef:
+        :param UserID:
+        :param ExchangeID:
+        :param OrderPriceType:
+        :param Direction:
+        :param CombOffsetFlag:
+        :param CombHedgeFlag:
+        :param LimitPrice:
+        :param VolumeTotalOriginal:
+        :param TimeCondition:
+        :param GTDDate:
+        :param VolumeCondition:
+        :param MinVolume:
+        :param ContingentCondition:
+        :param StopPrice:
+        :param ForceCloseReason:
+        :param IsAutoSuspend:
+        :param BusinessUnit:
+        :param RequestID:
+        :param UserForceClose:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.InstrumentID = InstrumentID
@@ -1070,8 +2298,31 @@ class CSecurityFtdcInputOrderField(Base):
 
 
 class CSecurityFtdcInputOrderActionField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, OrderActionRef, OrderRef, RequestID, FrontID, SessionID, ExchangeID,
                  ActionFlag, LimitPrice, VolumeChange, UserID, InstrumentID, BranchPBU, OrderLocalID):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param OrderActionRef:
+        :param OrderRef:
+        :param RequestID:
+        :param FrontID:
+        :param SessionID:
+        :param ExchangeID:
+        :param ActionFlag:
+        :param LimitPrice:
+        :param VolumeChange:
+        :param UserID:
+        :param InstrumentID:
+        :param BranchPBU:
+        :param OrderLocalID:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.OrderActionRef = int(OrderActionRef)
@@ -1091,17 +2342,41 @@ class CSecurityFtdcInputOrderActionField(Base):
 
 class CSecurityFtdcSpecificInstrumentField(Base):
     def __init__(self, InstrumentID, ExchangeID):
+        """
+
+        :param InstrumentID:
+        :param ExchangeID:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcSpecificExchangeField(Base):
     def __init__(self, ExchangeID):
+        """
+
+        :param ExchangeID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcMarketDataBaseField(Base):
+    """
+
+    """
+
     def __init__(self, TradingDay, PreSettlementPrice, PreClosePrice, PreOpenInterest, PreDelta):
+        """
+
+        :param TradingDay:
+        :param PreSettlementPrice:
+        :param PreClosePrice:
+        :param PreOpenInterest:
+        :param PreDelta:
+        :return:
+        """
         self.TradingDay = TradingDay
         self.PreSettlementPrice = float(PreSettlementPrice)
         self.PreClosePrice = float(PreClosePrice)
@@ -1110,8 +2385,24 @@ class CSecurityFtdcMarketDataBaseField(Base):
 
 
 class CSecurityFtdcMarketDataStaticField(Base):
+    """
+
+    """
+
     def __init__(self, OpenPrice, HighestPrice, LowestPrice, ClosePrice, UpperLimitPrice, LowerLimitPrice,
                  SettlementPrice, CurrDelta):
+        """
+
+        :param OpenPrice:
+        :param HighestPrice:
+        :param LowestPrice:
+        :param ClosePrice:
+        :param UpperLimitPrice:
+        :param LowerLimitPrice:
+        :param SettlementPrice:
+        :param CurrDelta:
+        :return:
+        """
         self.OpenPrice = float(OpenPrice)
         self.HighestPrice = float(HighestPrice)
         self.LowestPrice = float(LowestPrice)
@@ -1123,7 +2414,19 @@ class CSecurityFtdcMarketDataStaticField(Base):
 
 
 class CSecurityFtdcMarketDataLastMatchField(Base):
+    """
+
+    """
+
     def __init__(self, LastPrice, Volume, Turnover, OpenInterest):
+        """
+
+        :param LastPrice:
+        :param Volume:
+        :param Turnover:
+        :param OpenInterest:
+        :return:
+        """
         self.LastPrice = float(LastPrice)
         self.Volume = int(Volume)
         self.Turnover = float(Turnover)
@@ -1131,7 +2434,19 @@ class CSecurityFtdcMarketDataLastMatchField(Base):
 
 
 class CSecurityFtdcMarketDataBestPriceField(Base):
+    """
+
+    """
+
     def __init__(self, BidPrice1, BidVolume1, AskPrice1, AskVolume1):
+        """
+
+        :param BidPrice1:
+        :param BidVolume1:
+        :param AskPrice1:
+        :param AskVolume1:
+        :return:
+        """
         self.BidPrice1 = float(BidPrice1)
         self.BidVolume1 = int(BidVolume1)
         self.AskPrice1 = float(AskPrice1)
@@ -1139,7 +2454,19 @@ class CSecurityFtdcMarketDataBestPriceField(Base):
 
 
 class CSecurityFtdcMarketDataBid23Field(Base):
+    """
+
+    """
+
     def __init__(self, BidPrice2, BidVolume2, BidPrice3, BidVolume3):
+        """
+
+        :param BidPrice2:
+        :param BidVolume2:
+        :param BidPrice3:
+        :param BidVolume3:
+        :return:
+        """
         self.BidPrice2 = float(BidPrice2)
         self.BidVolume2 = int(BidVolume2)
         self.BidPrice3 = float(BidPrice3)
@@ -1147,7 +2474,19 @@ class CSecurityFtdcMarketDataBid23Field(Base):
 
 
 class CSecurityFtdcMarketDataAsk23Field(Base):
+    """
+
+    """
+
     def __init__(self, AskPrice2, AskVolume2, AskPrice3, AskVolume3):
+        """
+
+        :param AskPrice2:
+        :param AskVolume2:
+        :param AskPrice3:
+        :param AskVolume3:
+        :return:
+        """
         self.AskPrice2 = float(AskPrice2)
         self.AskVolume2 = int(AskVolume2)
         self.AskPrice3 = float(AskPrice3)
@@ -1155,7 +2494,19 @@ class CSecurityFtdcMarketDataAsk23Field(Base):
 
 
 class CSecurityFtdcMarketDataBid45Field(Base):
+    """
+
+    """
+
     def __init__(self, BidPrice4, BidVolume4, BidPrice5, BidVolume5):
+        """
+
+        :param BidPrice4:
+        :param BidVolume4:
+        :param BidPrice5:
+        :param BidVolume5:
+        :return:
+        """
         self.BidPrice4 = float(BidPrice4)
         self.BidVolume4 = int(BidVolume4)
         self.BidPrice5 = float(BidPrice5)
@@ -1163,7 +2514,19 @@ class CSecurityFtdcMarketDataBid45Field(Base):
 
 
 class CSecurityFtdcMarketDataAsk45Field(Base):
+    """
+
+    """
+
     def __init__(self, AskPrice4, AskVolume4, AskPrice5, AskVolume5):
+        """
+
+        :param AskPrice4:
+        :param AskVolume4:
+        :param AskPrice5:
+        :param AskVolume5:
+        :return:
+        """
         self.AskPrice4 = float(AskPrice4)
         self.AskVolume4 = int(AskVolume4)
         self.AskPrice5 = float(AskPrice5)
@@ -1171,7 +2534,19 @@ class CSecurityFtdcMarketDataAsk45Field(Base):
 
 
 class CSecurityFtdcMarketDataUpdateTimeField(Base):
+    """
+
+    """
+
     def __init__(self, InstrumentID, UpdateTime, UpdateMillisec, ActionDay):
+        """
+
+        :param InstrumentID:
+        :param UpdateTime:
+        :param UpdateMillisec:
+        :param ActionDay:
+        :return:
+        """
         self.InstrumentID = InstrumentID
         self.UpdateTime = UpdateTime
         self.UpdateMillisec = int(UpdateMillisec)
@@ -1179,23 +2554,67 @@ class CSecurityFtdcMarketDataUpdateTimeField(Base):
 
 
 class CSecurityFtdcMarketDataAveragePriceField(Base):
+    """
+
+    """
+
     def __init__(self, AveragePrice):
+        """
+
+        :param AveragePrice:
+        :return:
+        """
         self.AveragePrice = float(AveragePrice)
 
 
 class CSecurityFtdcMarketDataExchangeField(Base):
+    """
+
+    """
+
     def __init__(self, ExchangeID):
+        """
+
+        :param ExchangeID:
+        :return:
+        """
         self.ExchangeID = ExchangeID
 
 
 class CSecurityFtdcDisseminationField(Base):
+    """
+
+    """
+
     def __init__(self, SequenceSeries, SequenceNo):
+        """
+
+        :param SequenceSeries:
+        :param SequenceNo:
+        :return:
+        """
         self.SequenceSeries = int(SequenceSeries)
         self.SequenceNo = int(SequenceNo)
 
 
 class CSecurityFtdcInputFundTransferField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, AccountID, Password, UserID, TradeAmount, Digest, AccountType):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param AccountID:
+        :param Password:
+        :param UserID:
+        :param TradeAmount:
+        :param Digest:
+        :param AccountType:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.AccountID = AccountID
@@ -1207,8 +2626,32 @@ class CSecurityFtdcInputFundTransferField(Base):
 
 
 class CSecurityFtdcFundTransferField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, InvestorID, AccountID, Password, UserID, TradeAmount, Digest, SessionID, LiberSerial,
                  PlateSerial, TransferSerial, TradingDay, TradeTime, FundDirection, ErrorID, ErrorMsg):
+        """
+
+        :param BrokerID:
+        :param InvestorID:
+        :param AccountID:
+        :param Password:
+        :param UserID:
+        :param TradeAmount:
+        :param Digest:
+        :param SessionID:
+        :param LiberSerial:
+        :param PlateSerial:
+        :param TransferSerial:
+        :param TradingDay:
+        :param TradeTime:
+        :param FundDirection:
+        :param ErrorID:
+        :param ErrorMsg:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.InvestorID = InvestorID
         self.AccountID = AccountID
@@ -1228,7 +2671,18 @@ class CSecurityFtdcFundTransferField(Base):
 
 
 class CSecurityFtdcQryFundTransferSerialField(Base):
+    """
+
+    """
+
     def __init__(self, BrokerID, AccountID, AccountType):
+        """
+
+        :param BrokerID:
+        :param AccountID:
+        :param AccountType:
+        :return:
+        """
         self.BrokerID = BrokerID
         self.AccountID = AccountID
         self.AccountType = AccountType
