@@ -9,20 +9,20 @@ static PyObject *create_MdApi(PyObject * self, PyObject * args) {
         return NULL;
     }
     PyObject *api = CSecurityFtdcMdApi::CreateFtdcMdApi(path);
-
+    Py_INCREF(api);
     return api;
 
 }
 
 static PyObject *Md_Init(PyObject * self, PyObject * args) {
 
-    PyObject *api = PyTuple_GetItem(args, 0);
+    PyObject *py_api = PyTuple_GetItem(args, 0);
 
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
 
     api->Init();
 
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_INCREF(Py_None);
 
     return Py_None;
@@ -30,42 +30,42 @@ static PyObject *Md_Init(PyObject * self, PyObject * args) {
 
 static PyObject *Md_Release(PyObject * self, PyObject * args) {
 
-    PyObject *api = PyTuple_GetItem(args, 0);
+    PyObject *py_api = PyTuple_GetItem(args, 0);
 
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
 
     api->Release();
 
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_INCREF(Py_None);
     return Py_None;
 }
 
 static PyObject *Md_Join(PyObject * self, PyObject * args) {
 
-    PyObject *api = PyTuple_GetItem(args, 0);
+    PyObject *py_api = PyTuple_GetItem(args, 0);
 
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
 
     PyObject *response = Py_BuildValue("i", api->Join());
 
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     return response;
 }
 
 static PyObject *Md_RegisterFront(PyObject * self, PyObject * args) {
 
 
-    PyObject *api;
+    PyObject *py_api;
     char *ipAddress;
 
-    if (!PyArg_ParseTuple(args, "Os", &api, &ip)) {
+    if (!PyArg_ParseTuple(args, "Os", &py_api, &ip)) {
         return NULL;
     }
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
     api->RegisterFront(ipAddress);
 
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_INCREF(Py_None);
     return Py_None;
 }
@@ -73,17 +73,18 @@ static PyObject *Md_RegisterFront(PyObject * self, PyObject * args) {
 static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
 
 
-    PyObject *api;
+    PyObject *py_api;
     PyObject *py_spi;
-    if (!PyArg_ParseTuple(args, "OO", &api, &py_spi)) {
+    if (!PyArg_ParseTuple(args, "OO", &py_api, &py_spi)) {
         return NULL;
     }
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
 
     CSecurityFtdcMdSpi *spi = new MdSpiWrapper(py_spi);
     api->RegisterSpi(spi);
     /* todo fix decref py_spi */
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_XDECREF(py_spi);
     Py_INCREF(Py_None);
 
@@ -91,9 +92,9 @@ static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
 }
 
 static PyObject *Md_SubscribeMarketData(PyObject * self, PyObject * args) {
-    PyObject *api = PyTuple_GetItem(args, 0);
+    PyObject *py_api = PyTuple_GetItem(args, 0);
 
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
     PyObject *instruments = PyTuple_GetItem(args, 1);
     PyObject *exchangeid = PyTuple_GetItem(args, 2);
     char *exchange = PyString_AsString(exchangeid);
@@ -108,7 +109,7 @@ static PyObject *Md_SubscribeMarketData(PyObject * self, PyObject * args) {
     api->SubscribeMarketData(inst_list, length, exchange);
     free(inst_list);
 
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_XDECREF(instruments);
     Py_XDECREF(exchangeid);
 
@@ -119,9 +120,9 @@ static PyObject *Md_SubscribeMarketData(PyObject * self, PyObject * args) {
 
 static PyObject *Md_UnSubscribeMarketData(PyObject * self, PyObject * args) {
 
-    PyObject *api = PyTuple_GetItem(args, 0);
+    PyObject *py_api = PyTuple_GetItem(args, 0);
 
-    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) api;
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
 
     PyObject *instruments = PyTuple_GetItem(args, 1);
     PyObject *exchangeid = PyTuple_GetItem(args, 2);
@@ -139,7 +140,7 @@ static PyObject *Md_UnSubscribeMarketData(PyObject * self, PyObject * args) {
     api->UnSubscribeMarketData(inst_list, length, exchange);
 
     free(inst_list);
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_XDECREF(instruments);
     Py_XDECREF(exchangeid);
     Py_INCREF(Py_None);
@@ -151,35 +152,36 @@ static PyObject *Md_UnSubscribeMarketData(PyObject * self, PyObject * args) {
 static PyObject *Md_ReqUserLogin(PyObject * self, PyObject * args) {
 
 
-    PyObject *api;
+    PyObject *py_api;
     PyObject *py_login;
     int requestid;
-    if (!PyArg_ParseTuple(args, "OOi", &api, &py_login, &requestid)) {
+    if (!PyArg_ParseTuple(args, "OOi", &py_api, &py_login, &requestid)) {
         return NULL;
     }
-
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
     CSecurityFtdcReqUserLoginField *login_field = from_CSecurityFtdcReqUserLoginField(py_login);
     PyObject *response = Py_BuildValue("i", api->ReqUserLogin(login_field, requestid));
 
     free(login_field);
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_XDECREF(py_login);
     return response;
 }
 
 static PyObject *Md_ReqUserLogout(PyObject * self, PyObject * args) {
-    PyObject *api;
+    PyObject * ;
     PyObject *py_logout;
     int logoutid;
 
-    if (!PyArg_ParseTuple(args, "OOi", &api, &py_logout, &logoutid)) {
+    if (!PyArg_ParseTuple(args, "OOi", &py_api, &py_logout, &logoutid)) {
         return NULL;
     }
+    CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
     CSecurityFtdcUserLogoutField *logout_field = from_CSecurityFtdcUserLogoutField(py_logout);
     PyObject *response = Py_BuildValue("i", api->ReqUserLogout(logout_field, logoutid));
 
     free(logout_field);
-    Py_XDECREF(api);
+    Py_XDECREF(py_api);
     Py_XDECREF(py_logout);
     return response;
 
