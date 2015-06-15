@@ -169,7 +169,7 @@ static PyObject *Md_ReqUserLogin(PyObject * self, PyObject * args) {
 }
 
 static PyObject *Md_ReqUserLogout(PyObject * self, PyObject * args) {
-    PyObject * ;
+    PyObject *py_api;
     PyObject *py_logout;
     int logoutid;
 
