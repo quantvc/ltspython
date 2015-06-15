@@ -1,112 +1,121 @@
 #include "MdAPI.h"
+#include "trader_struct.h"
 
-
-MdSpiWrapper::MdSpiWrapper(PyObject *parent):CSecurityFtdcMdSpi()
-{
+MdSpiWrapper::MdSpiWrapper(PyObject * parent): CSecurityFtdcMdSpi() {
     py_spi = parent;
     Py_INCREF(py_spi);
 }
 
 
-void MdSpiWrapper::OnFrontConnected()
-{
-  PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
+void MdSpiWrapper::OnFrontConnected() {
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
 
-  if(!PyObject_CallMethod(py_spi,(char *)"OnFrontConnected",NULL))
-  {
-  PyErr_Print();
-  }
-
-  PyGILState_Release(gstate);
-
-}
-
-void MdSpiWrapper::OnFrontDisconnected(int nReason)
-{
-  PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-  if(!PyObject_CallMethod(py_spi,(char*)"OnFrontDisconnected",(char*)"i",nReason))
-  {
-  PyErr_Print();
-  }
-  PyGILState_Release(gstate);
-}
-void  MdSpiWrapper::OnHeartBeatWarning(int nTimeLapse)
-{
-PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-  if(!PyObject_CallMethod(py_spi,(char*)"OnHeartBeatWarning",(char*)"i",nTimeLapse))
-  {
-  PyErr_Print();
-  }
-
-  PyGILState_Release(gstate);
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnFrontConnected", NULL)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
 
 }
 
-void MdSpiWrapper::OnRspError(CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
-
-PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-  if(!PyObject_CallMethod(py_spi,(char*)"OnRspError",(char*)"Nib",new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast)){
-  PyErr_Print();
-  }
-
-  PyGILState_Release(gstate);
+void MdSpiWrapper::OnFrontDisconnected(int nReason) {
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnFrontDisconnected", "i", nReason)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
 }
 
-void  MdSpiWrapper::OnRspUserLogin(CSecurityFtdcRspUserLoginField *pRspUserLogin, CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
-
-  PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-if(!PyObject_CallMethod(py_spi,(char*)"OnRspUserLogin",(char*)"NNib"),new_CSecurityFtdcRspUserLoginField(pRspUserLogin),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
-{
-PyErr_Print();
-}
-  PyGILState_Release(gstate);
-}
-
-void  MdSpiWrapper::OnRspUserLogout(CSecurityFtdcUserLogoutField *pUserLogout, CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
-
-PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-  if(!PyObject_CallMethod(py_spi,(char*)"OnRspUserLogout",(char*)"NNib",new_CSecurityFtdcUserLogoutField(pUserLogout),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
-  {
-  PyErr_Print();
-  }
-
-  PyGILState_Release(gstate);
-}
-
-void MdSpiWrapper::OnRspSubMarketData(CSecurityFtdcSpecificInstrumentField *pSpecificInstrument, CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
-
-PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-
-  if(!PyObject_CallMethod(py_spi,(char*)"OnRspSubMarketData",(char*)"NNib",new_CSecurityFtdcSpecificInstrumentField(pSpecificInstrument),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
-  {
-  PyErr_Print();
-  }
-
-
-  PyGILState_Release(gstate);
+void  MdSpiWrapper::OnHeartBeatWarning(int nTimeLapse) {
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnHeartBeatWarning", "i", nTimeLapse)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
 
 }
-void MdSpiWrapper::OnRspUnSubMarketData(CSecurityFtdcSpecificInstrumentField *pSpecificInstrument, CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast)
-{
 
-PyGILState_STATE gstate;
-  gstate=PyGILState_Ensure();
-  if(!PyObject_CallMethod(py_spi,(char*)"OnRspUnSubMarketData",(char*)"NNib",new_CSecurityFtdcSpecificInstrumentField(pSpecificInstrument),new_CSecurityFtdcRspInfoField(pRspInfo),nRequestID,bIsLast))
-  {
-  PyErr_Print();
-  }
+void MdSpiWrapper::OnRspError(CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
 
-  PyGILState_Release(gstate);
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRspError", "Nib", new_CSecurityFtdcRspInfoField(pRspInfo),
+                             nRequestID, bIsLast)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+
+    PyGILState_Release(gstate);
+}
+
+void  MdSpiWrapper::OnRspUserLogin(CSecurityFtdcRspUserLoginField *pRspUserLogin, CSecurityFtdcRspInfoField *pRspInfo,
+                                   int nRequestID, bool bIsLast) {
+
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRspUserLogin", "NNib",
+                             new_CSecurityFtdcRspUserLoginField(pRspUserLogin), new_CSecurityFtdcRspInfoField(pRspInfo),
+                             nRequestID, bIsLast)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
+}
+
+void  MdSpiWrapper::OnRspUserLogout(CSecurityFtdcUserLogoutField *pUserLogout, CSecurityFtdcRspInfoField *pRspInfo,
+                                    int nRequestID, bool bIsLast) {
+
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRspUserLogout", "NNib",
+                             new_CSecurityFtdcUserLogoutField(pUserLogout), new_CSecurityFtdcRspInfoField(pRspInfo),
+                             nRequestID, bIsLast)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
+}
+
+void MdSpiWrapper::OnRspSubMarketData(CSecurityFtdcSpecificInstrumentField *pSpecificInstrument,
+                                      CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRspSubMarketData", "NNib",
+                             new_CSecurityFtdcSpecificInstrumentField(pSpecificInstrument),
+                             new_CSecurityFtdcRspInfoField(pRspInfo), nRequestID, bIsLast)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+
+    PyGILState_Release(gstate);
+
+}
+
+void MdSpiWrapper::OnRspUnSubMarketData(CSecurityFtdcSpecificInstrumentField *pSpecificInstrument,
+                                        CSecurityFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast) {
+
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRspUnSubMarketData", "NNib",
+                             new_CSecurityFtdcSpecificInstrumentField(pSpecificInstrument),
+                             new_CSecurityFtdcRspInfoField(pRspInfo), nRequestID, bIsLast)) {
+        PyErr_Print();
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
 
 }

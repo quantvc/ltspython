@@ -61,7 +61,8 @@ def generate_cpp():
         type_def = "".join(
             [struct_type(struct[item][field]["type"], struct[item][field].get("length", None)) for field in
              struct[item]])
-        struct_cpp_file.write('return PyObject_CallMethod(mod,(char *)"%s",(char*)"%s",\n ' % (item, type_def))
+
+        struct_cpp_file.write('return PyObject_CallMethod(mod,"%s","%s",\n ' % (item, type_def))
         struct_cpp_file.write(', '.join(['p->%s' % field for field in struct[item]]))
         struct_cpp_file.write(");\n}\n")
 
