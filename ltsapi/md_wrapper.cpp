@@ -1,5 +1,5 @@
 #include "MdAPI.h"
-#include "trader_struct.h"
+#include "api_struct.h"
 
 MdSpiWrapper::MdSpiWrapper(PyObject * parent): CSecurityFtdcMdSpi() {
     py_spi = parent;

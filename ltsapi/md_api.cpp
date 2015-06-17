@@ -1,5 +1,5 @@
 #include "MdAPI.h"
-#include "trader_struct.h"
+#include "api_struct.h"
 
 static PyObject *create_MdApi(PyObject * self, PyObject * args) {
 
@@ -59,7 +59,7 @@ static PyObject *Md_RegisterFront(PyObject * self, PyObject * args) {
     PyObject *py_api;
     char *ipAddress;
 
-    if (!PyArg_ParseTuple(args, "Os", &py_api, &ip)) {
+    if (!PyArg_ParseTuple(args, "Os", &py_api, &ipAddress)) {
         return NULL;
     }
     CSecurityFtdcMdApi *api = (CSecurityFtdcMdApi *) py_api;
