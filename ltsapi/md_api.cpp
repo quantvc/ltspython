@@ -4,13 +4,14 @@
 static PyObject *create_MdApi(PyObject * self, PyObject * args) {
 
     char *path;
-
+    PyObject *py_api;
     if (!PyArg_ParseTuple(args, "s", &path)) {
         return NULL;
     }
-    PyObject *api = CSecurityFtdcMdApi::CreateFtdcMdApi(path);
-    Py_INCREF(api);
-    return api;
+    CSecurityFtdcMdApi * api = CSecurityFtdcMdApi::CreateFtdcMdApi(path);
+    py_api = (PyObject *)api;
+    Py_INCREF(py_api);
+    return py_api;
 
 }
 
@@ -83,7 +84,9 @@ static PyObject *Md_RegisterSpi(PyObject * self, PyObject * args) {
 
     CSecurityFtdcMdSpi *spi = new MdSpiWrapper(py_spi);
     api->RegisterSpi(spi);
-    /* todo fix decref py_spi */
+
+    // todo fix decref py_spi
+
     Py_XDECREF(py_api);
     Py_XDECREF(py_spi);
     Py_INCREF(Py_None);
@@ -191,11 +194,8 @@ static PyObject *Md_ReqUserLogout(PyObject * self, PyObject * args) {
 #define PyMODINIT_FUNC void
 #endif
 
-# todo fix __declspec(dllexport)
-
-PyMODINIT_FUNC init_Md() {
-
-    static PyMethodDef MdMethods[] = {
+// todo fix __declspec(dllexport)
+ static PyMethodDef MdMethods[] = {
             {"create_MdApi",          create_MdApi,             METH_VARARGS},
             {"ReqUserLogin",          Md_ReqUserLogin,          METH_VARARGS},
             {"ReqUserLogout",         Md_ReqUserLogout,         METH_VARARGS},
@@ -209,6 +209,10 @@ PyMODINIT_FUNC init_Md() {
             {NULL,                    NULL,                     0}, /* sentinel */
             /*a value of 0 means that an obsolete variant of PyArg_ParseTuple() is used.*/
     };
+
+PyMODINIT_FUNC init_md_api() {
+
+
     Py_InitModule("md_api", MdMethods);
     PyEval_InitThreads();
 }

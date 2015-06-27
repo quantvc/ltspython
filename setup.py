@@ -1,14 +1,13 @@
 # encoding:utf-8
 import os
 import sys
-from distutils.core import Extension
 
-from setuptools import setup, find_packages
+from setuptools import setup, find_packages, Extension
 
 project_dir = os.path.join(os.path.dirname(__file__), "ltsapi")
 
 lts_dir = os.path.abspath(os.path.join(project_dir, "LtsApi"))
-
+header_dir= os.path.join(os.path.join(project_dir,"Header"))
 compile_args = []
 extra_link_args = []
 package_data = ["LtsApi/*.xml"]
@@ -23,20 +22,19 @@ elif sys.platform == "win32":
     package_data.append("LtsApi/*.dll")
 
 common_args = {
-    "include_dirs": [lts_dir],
+    "include_dirs": [lts_dir,header_dir],
     "library_dirs": [lts_dir],
     "language": "c++",
 }
 
-extensions = [
-
-    Extension(name="ltsapi.md_api",
-              sources=["ltsapi/md_api.cpp","ltsapi/md_wrapper.cpp","lts/api_struct.cpp"],
-              extra_compile_args=compile_args,
-              extra_link_args=extra_link_args,
-              libraries=["securitymduserapi"],
-              **common_args),
-]
+extensions = [Extension(name="ltsapi.md_api",
+                        sources=["ltsapi/md_api.cpp", "ltsapi/md_wrapper.cpp", "ltsapi/api_struct.cpp"],
+                        extra_compile_args=compile_args,
+                        extra_link_args=extra_link_args,
+                        libraries=["securitymduserapi"],
+                        **common_args
+                        )
+              ]
 
 setup(
     name='python LTS Api',
