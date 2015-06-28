@@ -120,18 +120,15 @@ void MdSpiWrapper::OnRspUnSubMarketData(CSecurityFtdcSpecificInstrumentField *pS
 
 }
 
-void MdSpiWrapper::OnRtnDepthMarketData(CSecurityFtdcDepthMarketDataField *pDepthMarketData)
-{
- PyGILState_STATE gstate;
- gstate = PyGILState_Ensure();
- Py_Initialize();
- if(!PyObject_CallMethod(py_spi,"OnRtnDepthMarketData","N",
-                           new_CSecurityFtdcDepthMarketDataField(pDepthMarketData)
-                             ))
-                             {
-                             PyErr_Print();
+void MdSpiWrapper::OnRtnDepthMarketData(CSecurityFtdcDepthMarketDataField *pDepthMarketData) {
+    PyGILState_STATE gstate;
+    gstate = PyGILState_Ensure();
+    Py_Initialize();
+    if (!PyObject_CallMethod(py_spi, "OnRtnDepthMarketData", "N",
+                             new_CSecurityFtdcDepthMarketDataField(pDepthMarketData))) {
+        PyErr_Print();
 
-                             }
-                     Py_Finalize();
-                     PyGILState_Release(gstate);
+    }
+    Py_Finalize();
+    PyGILState_Release(gstate);
 }
