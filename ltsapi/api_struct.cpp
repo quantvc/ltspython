@@ -30,7 +30,7 @@ CSecurityFtdcRspInfoField *from_CSecurityFtdcRspInfoField(PyObject * p) {
     strcpy(t->ErrorMsg, PyString_AsString(PyObject_GetAttrString(p, "ErrorMsg")));
 
     return t;
-};
+}
 
 
 PyObject *new_CSecurityFtdcRspUserLoginField(CSecurityFtdcRspUserLoginField * p) {
@@ -58,7 +58,7 @@ CSecurityFtdcRspUserLoginField *from_CSecurityFtdcRspUserLoginField(PyObject * p
     strcpy(t->MaxOrderRef, PyString_AsString(PyObject_GetAttrString(p, "MaxOrderRef")));
 
     return t;
-};
+}
 
 PyObject *new_CSecurityFtdcUserLogoutField(CSecurityFtdcUserLogoutField * p) {
     if (p == NULL) {
@@ -77,7 +77,7 @@ CSecurityFtdcUserLogoutField *from_CSecurityFtdcUserLogoutField(PyObject * p) {
     strcpy(t->UserID, PyString_AsString(PyObject_GetAttrString(p, "UserID")));
 
     return t;
-};
+}
 
 
 
@@ -99,7 +99,7 @@ CSecurityFtdcSpecificInstrumentField *from_CSecurityFtdcSpecificInstrumentField(
     strcpy(t->ExchangeID, PyString_AsString(PyObject_GetAttrString(p, "ExchangeID")));
 
     return t;
-};
+}
 
 
 PyObject *new_CSecurityFtdcDepthMarketDataField(CSecurityFtdcDepthMarketDataField * p) {
@@ -171,7 +171,7 @@ CSecurityFtdcDepthMarketDataField *from_CSecurityFtdcDepthMarketDataField(PyObje
     strcpy(t->ActionDay, PyString_AsString(PyObject_GetAttrString(p, "ActionDay")));
 
     return t;
-};
+}
 
 
 PyObject *new_CSecurityFtdcReqUserLoginField(CSecurityFtdcReqUserLoginField * p) {
@@ -203,4 +203,4 @@ CSecurityFtdcReqUserLoginField *from_CSecurityFtdcReqUserLoginField(PyObject * p
     strcpy(t->AuthCode, PyString_AsString(PyObject_GetAttrString(p, "AuthCode")));
 
     return t;
-};
+}
