@@ -7,7 +7,7 @@ public:
 
     MdSpiWrapper(PyObject *parent);
 
-    virtual ~MdSpiWrapper();
+//    virtual  ~MdSpiWrapper();
 
     virtual void OnFrontConnected();
 

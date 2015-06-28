@@ -210,7 +210,7 @@ static PyObject *Md_ReqUserLogout(PyObject * self, PyObject * args) {
             /*a value of 0 means that an obsolete variant of PyArg_ParseTuple() is used.*/
     };
 
-PyMODINIT_FUNC init_md_api() {
+PyMODINIT_FUNC initmd_api() {
 
 
     Py_InitModule("md_api", MdMethods);
